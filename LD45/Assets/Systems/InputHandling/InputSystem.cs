@@ -12,6 +12,7 @@ namespace Systems
     public class InputSystem : GameSystem<InputComponent>
     {
         private List<char> _memory = new List<char>();
+        private InputConfig _inputConfig = new InputConfig();
 
         public override void Register(InputComponent inputComponent)
         {
@@ -29,44 +30,9 @@ namespace Systems
         {
             foreach (char c in Input.inputString)
             {
-                //TODO if(c is in allowedChars) do
                 inputComponent.StartedTyping.SetValueAndForceNotify(true);
-                inputComponent.TimeLeft.SetValueAndForceNotify(inputComponent.MaxTime);
-
-                _memory.Add(c);
-                Debug.Log("pressed " + c);
-                inputComponent.CurrentWord.SetValueAndForceNotify(string.Join("", _memory.ToArray()));
-                switch (inputComponent.CurrentWord.Value.ToLower()) //TODO check if word starts with else error sound
-                {
-                    case "fire":
-                        ClearCurrentWord(inputComponent);
-                        NotifyWordCompleted(InputWordType.Fire);
-                        break;
-                    case "hit":
-                        ClearCurrentWord(inputComponent);
-                        NotifyWordCompleted(InputWordType.Hit);
-                        break;
-                    case "key":
-                        ClearCurrentWord(inputComponent);
-                        NotifyWordCompleted(InputWordType.Key);
-                        break;
-                    case "magic":
-                        ClearCurrentWord(inputComponent);
-                        NotifyWordCompleted(InputWordType.Magic);
-                        break;
-                    case "megahit":
-                        ClearCurrentWord(inputComponent);
-                        NotifyWordCompleted(InputWordType.Megahit);
-                        break;
-                    case "nothing":
-                        ClearCurrentWord(inputComponent);
-                        NotifyWordCompleted(InputWordType.Nothing);
-                        break;
-                    case "parry":
-                        ClearCurrentWord(inputComponent);
-                        NotifyWordCompleted(InputWordType.Parry);
-                        break;
-                }
+                HandleKeyInput(c, inputComponent);
+                SaveKeyInput(c, inputComponent);
             }
         }
 
@@ -93,6 +59,68 @@ namespace Systems
         private void NotifyWordCompleted(InputWordType inputWordType)
         {
             MessageBroker.Default.Publish(new InputWordCompleted { InputWord = inputWordType });
+        }
+
+        private void NotifyValidKeyInput(char c)
+        {
+            MessageBroker.Default.Publish(new InputValidKey { CharacterInput = c });
+        }
+
+        private void HandleKeyInput(char c, InputComponent component)
+        {
+            if (_inputConfig.InputKeys.Contains(c))
+            {
+                component.TimeLeft.SetValueAndForceNotify(component.MaxTime);
+                CheckForCompletedWord(component);
+                NotifyValidKeyInput(c);
+                // TODO: Play successful input sound
+            }
+            else
+            {
+                // TODO: Play error input sound
+            }
+        }
+
+        private void CheckForCompletedWord(InputComponent component)
+        {
+            switch (component.CurrentWord.Value.ToLower()) //TODO check if word starts with else error sound
+            {
+                case "fire":
+                    ClearCurrentWord(component);
+                    NotifyWordCompleted(InputWordType.Fire);
+                    break;
+                case "hit":
+                    ClearCurrentWord(component);
+                    NotifyWordCompleted(InputWordType.Hit);
+                    break;
+                case "key":
+                    ClearCurrentWord(component);
+                    NotifyWordCompleted(InputWordType.Key);
+                    break;
+                case "magic":
+                    ClearCurrentWord(component);
+                    NotifyWordCompleted(InputWordType.Magic);
+                    break;
+                case "megahit":
+                    ClearCurrentWord(component);
+                    NotifyWordCompleted(InputWordType.Megahit);
+                    break;
+                case "nothing":
+                    ClearCurrentWord(component);
+                    NotifyWordCompleted(InputWordType.Nothing);
+                    break;
+                case "parry":
+                    ClearCurrentWord(component);
+                    NotifyWordCompleted(InputWordType.Parry);
+                    break;
+            }
+        }
+
+        private void SaveKeyInput(char c, InputComponent component)
+        {
+            _memory.Add(c);
+            component.CurrentWord.SetValueAndForceNotify(string.Join("", _memory.ToArray()));
+            Debug.Log("pressed " + c);
         }
     }
 }
