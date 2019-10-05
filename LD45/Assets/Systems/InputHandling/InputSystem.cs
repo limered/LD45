@@ -30,6 +30,8 @@ namespace Assets.Systems
             foreach (char c in Input.inputString)
             {
                 inputComponent.StartedTyping.SetValueAndForceNotify(true);
+                inputComponent.TimeLeft.SetValueAndForceNotify(inputComponent.MaxTime);
+
                 _memory.Add(c);
                 Debug.Log("pressed " + c);
                 inputComponent.CurrentWord.SetValueAndForceNotify(string.Join("", _memory.ToArray()));
@@ -41,13 +43,16 @@ namespace Assets.Systems
                     case "hit":
                         ClearCurrentWord(inputComponent);
                         break;
+                    case "key":
+                        ClearCurrentWord(inputComponent);
+                        break;
                     case "magic":
                         ClearCurrentWord(inputComponent);
                         break;
                     case "megahit":
                         ClearCurrentWord(inputComponent);
                         break;
-                    case "key":
+                    case "parry":
                         ClearCurrentWord(inputComponent);
                         break;
                 }
