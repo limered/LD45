@@ -12,17 +12,20 @@ namespace Systems.Movement
         {
             component.FixedUpdateAsObservable()
                 .Select(_ => component)
-                .Subscribe(CalculatyeMovement)
+                .Subscribe(CalculateMovement)
                 .AddTo(component);
+
+            ResetRigidbody(component);
         }
 
-        public void CalculatyeMovement(MovementComponent component)
+        private static void ResetRigidbody(Component comp)
         {
-            ApplyDirection(component);
-            ApplyFriction(component);
-            Animate(component);
-            ApplyAnimationToObject(component);
-            if(component.Collider) FixCollider(component);
+            var body = comp.GetComponent<Rigidbody>();
+            body.drag = 0;
+            body.angularDrag = 0;
+            body.isKinematic = false;
+            body.useGravity = false;
+            body.freezeRotation = true;
         }
 
         private static void FixCollider(MovementComponent component)
@@ -58,6 +61,15 @@ namespace Systems.Movement
         private static void ApplyDirection(MovementComponent component)
         {
             component.Acceleration = component.Direction * component.Speed;
+        }
+
+        private void CalculateMovement(MovementComponent component)
+        {
+            ApplyDirection(component);
+            ApplyFriction(component);
+            Animate(component);
+            ApplyAnimationToObject(component);
+            if (component.Collider) FixCollider(component);
         }
     }
 }

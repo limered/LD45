@@ -3,12 +3,13 @@ using UnityEngine;
 
 namespace Systems.Movement
 {
+    [RequireComponent(typeof(Rigidbody), typeof(Collider))]
     public class MovementComponent : GameComponent
     {
         public float Speed;
         public float Friction;
         public float MaxSpeed;
-        public GameObject Collider;
+        public Collider Collider;
 
         public Vector2 Direction { get; set; }
         public Vector2 Velocity { get; set; }
