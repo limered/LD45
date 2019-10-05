@@ -1,18 +1,15 @@
 ﻿using SystemBase;
 using Systems.InputHandling.Events;
-using Systems.InputHandling;
 using UniRx;
-using UnityEngine;
 using UniRx.Triggers;
-using System.Collections.Generic;
+using UnityEngine;
 
-namespace Systems
+namespace Systems.InputHandling
 {
     [GameSystem]
     public class InputSystem : GameSystem<InputComponent>
     {
-        private List<char> _memory = new List<char>();
-        private InputConfig _inputConfig = new InputConfig();
+        private readonly InputConfig _inputConfig = new InputConfig();
 
         public override void Register(InputComponent inputComponent)
         {
@@ -28,11 +25,12 @@ namespace Systems
 
         private void CheckForNouns(InputComponent inputComponent)
         {
-            foreach (char c in Input.inputString)
+            foreach (var c in Input.inputString.ToLower())
             {
-                inputComponent.StartedTyping.SetValueAndForceNotify(true);
-                HandleKeyInput(c, inputComponent);
+                inputComponent.StartedTyping.Value = true;
                 SaveKeyInput(c, inputComponent);
+
+                HandleKeyInput(c, inputComponent);
             }
         }
 
@@ -50,8 +48,7 @@ namespace Systems
 
         private void ClearCurrentWord(InputComponent inputComponent)
         {
-            inputComponent.CurrentWord.SetValueAndForceNotify("");
-            _memory.Clear();
+            inputComponent.CurrentWord.Value = string.Empty;
             inputComponent.TimeLeft.SetValueAndForceNotify(inputComponent.MaxTime);
             inputComponent.StartedTyping.SetValueAndForceNotify(false);
         }
@@ -118,9 +115,8 @@ namespace Systems
 
         private void SaveKeyInput(char c, InputComponent component)
         {
-            _memory.Add(c);
-            component.CurrentWord.SetValueAndForceNotify(string.Join("", _memory.ToArray()));
-            Debug.Log("pressed " + c);
+            component.CurrentWord.Value += c;
+            component.TimeLeft.Value = component.MaxTime;
         }
     }
 }
