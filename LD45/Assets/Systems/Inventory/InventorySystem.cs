@@ -3,7 +3,7 @@ using SystemBase;
 using UniRx;
 using Systems.InputHandling.Events;
 
-namespace Systems.Hud
+namespace Systems.Inventory
 {
     [GameSystem()]
     public class InventorySystem : GameSystem<InventoryComponent, InputComponent>

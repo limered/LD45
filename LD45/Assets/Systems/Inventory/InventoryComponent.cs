@@ -1,7 +1,7 @@
 ﻿using SystemBase;
 using UnityEngine;
 
-namespace Systems.Hud
+namespace Systems.Inventory
 {
     public class InventoryComponent : GameComponent
     {

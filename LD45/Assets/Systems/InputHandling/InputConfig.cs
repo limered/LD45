@@ -11,8 +11,6 @@ namespace Systems.InputHandling
             't',
             'h',
             'i',
-            'n',
-            'g',
             'm',
             'e',
             'g',

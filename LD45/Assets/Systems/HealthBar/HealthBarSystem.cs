@@ -1,5 +1,6 @@
 ﻿using SystemBase;
 using Systems.Health;
+using Systems.Player;
 using UniRx;
 
 namespace Systems.HealthBar
@@ -12,14 +13,20 @@ namespace Systems.HealthBar
 
         public override void Register(HealthComponent component)
         {
-            _healthComponent = component;
-            FinishRegistration();
+            if (component.GetComponent<PlayerComponent>())
+            {
+                _healthComponent = component;
+                FinishRegistration();
+            }
         }
 
         public override void Register(HealthBarComponent component)
         {
-            _healthBarComponent = component;
-            FinishRegistration();
+            if (component.GetComponent<PlayerComponent>())
+            {
+                _healthBarComponent = component;
+                FinishRegistration();
+            }
         }
 
         private void FinishRegistration()
