@@ -11,10 +11,11 @@ namespace Systems.InputHandling
     public class InputSystem : GameSystem<InputComponent, InventoryComponent>
     {
         private readonly InputConfig _inputConfig = new InputConfig();
+        private InventoryComponent _inventoryComponent;
 
         public override void Register(InventoryComponent component)
         {
-            throw new System.NotImplementedException();
+            _inventoryComponent = component;
         }
 
         public override void Register(InputComponent inputComponent)
@@ -71,7 +72,7 @@ namespace Systems.InputHandling
 
         private void HandleKeyInput(char c, InputComponent component)
         {
-            if (_inputConfig.InputKeys.Contains(c))
+            if (_inventoryComponent.CollectedKeys.Value.Contains(c))
             {
                 component.TimeLeft.SetValueAndForceNotify(component.MaxTime);
                 CheckForCompletedWord(component);
