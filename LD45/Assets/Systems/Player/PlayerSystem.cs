@@ -12,6 +12,8 @@ namespace Systems.Player
     {
         public override void Register(PlayerComponent component)
         {
+            component.GetComponent<MovementComponent>().Direction
+                .Subscribe(dir => component.IsMoving = dir.magnitude > 0);
         }
 
         public override void Register(MovementComponent component)
@@ -45,8 +47,8 @@ namespace Systems.Player
             {
                 movementDirection.x += 1;
             }
-            
-            comp.Direction = movementDirection;
+
+            comp.Direction.Value = movementDirection;
         }
     }
 }

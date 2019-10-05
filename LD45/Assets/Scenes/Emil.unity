@@ -263,7 +263,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 10301, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -322,6 +322,8 @@ MonoBehaviour:
   Friction: 2
   MaxSpeed: 10
   Collider: {fileID: 0}
+  Direction:
+    value: {x: 0, y: 0}
 --- !u!114 &386168057
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -334,6 +336,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2909348b3da48c98e70ab10fdb4337c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  IsMoving: 0
 --- !u!54 &386168058
 Rigidbody:
   m_ObjectHideFlags: 0

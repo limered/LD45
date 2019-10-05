@@ -60,7 +60,7 @@ namespace Systems.Movement
 
         private static void ApplyDirection(MovementComponent component)
         {
-            component.Acceleration = component.Direction * component.Speed;
+            component.Acceleration = component.Direction.Value * component.Speed;
         }
 
         private void CalculateMovement(MovementComponent component)
