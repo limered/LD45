@@ -1,7 +1,7 @@
 ﻿using SystemBase;
 using UniRx;
 
-namespace Assets.Systems
+namespace Systems
 {
     public class InputComponent : GameComponent
     {

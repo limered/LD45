@@ -1,12 +1,12 @@
 ﻿using SystemBase;
-using Systems.Health.Actions;
-using Systems.Health.Events;
+using Systems.InputHandling.Events;
+using Systems.InputHandling;
 using UniRx;
 using UnityEngine;
 using UniRx.Triggers;
 using System.Collections.Generic;
 
-namespace Assets.Systems
+namespace Systems
 {
     [GameSystem]
     public class InputSystem : GameSystem<InputComponent>
@@ -39,21 +39,31 @@ namespace Assets.Systems
                 {
                     case "fire":
                         ClearCurrentWord(inputComponent);
+                        NotifyWordCompleted(InputWordType.Fire);
                         break;
                     case "hit":
                         ClearCurrentWord(inputComponent);
+                        NotifyWordCompleted(InputWordType.Hit);
                         break;
                     case "key":
                         ClearCurrentWord(inputComponent);
+                        NotifyWordCompleted(InputWordType.Key);
                         break;
                     case "magic":
                         ClearCurrentWord(inputComponent);
+                        NotifyWordCompleted(InputWordType.Magic);
                         break;
                     case "megahit":
                         ClearCurrentWord(inputComponent);
+                        NotifyWordCompleted(InputWordType.Megahit);
+                        break;
+                    case "nothing":
+                        ClearCurrentWord(inputComponent);
+                        NotifyWordCompleted(InputWordType.Nothing);
                         break;
                     case "parry":
                         ClearCurrentWord(inputComponent);
+                        NotifyWordCompleted(InputWordType.Parry);
                         break;
                 }
             }
@@ -77,6 +87,11 @@ namespace Assets.Systems
             _memory.Clear();
             inputComponent.TimeLeft.SetValueAndForceNotify(inputComponent.MaxTime);
             inputComponent.StartedTyping.SetValueAndForceNotify(false);
+        }
+
+        private void NotifyWordCompleted(InputWordType inputWordType)
+        {
+            MessageBroker.Default.Publish(new InputWordCompleted { InputWord = inputWordType });
         }
     }
 }
