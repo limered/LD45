@@ -5,7 +5,7 @@ namespace Systems.Health
 {
     public class HealthComponent : GameComponent
     {
-        public float MaxHealth = 100;
-        public FloatReactiveProperty CurrentHealth = new FloatReactiveProperty(0);
+        public int MaxHealth = 3;
+        public IntReactiveProperty CurrentHealth = new IntReactiveProperty(3);
     }
 }
