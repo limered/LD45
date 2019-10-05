@@ -21,8 +21,6 @@ namespace Systems.Interaction.Obstacle
             var dir = collision.impulse;
             var vel = collision.gameObject.GetComponent<MovementComponent>().Velocity;
             collision.gameObject.GetComponent<MovementComponent>().Velocity = vel + new Vector2(dir.x, dir.z);
-            collision.rigidbody.velocity = Vector3.zero;
-            collision.rigidbody.angularVelocity = Vector3.zero;
         }
     }
 }

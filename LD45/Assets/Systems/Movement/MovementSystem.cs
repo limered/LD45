@@ -65,11 +65,19 @@ namespace Systems.Movement
 
         private void CalculateMovement(MovementComponent component)
         {
+            StopRigidbodyMovement(component);
             ApplyDirection(component);
             ApplyFriction(component);
             Animate(component);
             ApplyAnimationToObject(component);
             if (component.Collider) FixCollider(component);
+        }
+
+        private static void StopRigidbodyMovement(MovementComponent component)
+        {
+            var body = component.GetComponent<Rigidbody>();
+            body.angularVelocity = Vector3.zero;
+            body.velocity = Vector3.zero;
         }
     }
 }
