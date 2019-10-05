@@ -29,13 +29,14 @@ namespace Systems
         {
             foreach (char c in Input.inputString)
             {
+                //TODO if(c is in allowedChars) do
                 inputComponent.StartedTyping.SetValueAndForceNotify(true);
                 inputComponent.TimeLeft.SetValueAndForceNotify(inputComponent.MaxTime);
 
                 _memory.Add(c);
                 Debug.Log("pressed " + c);
                 inputComponent.CurrentWord.SetValueAndForceNotify(string.Join("", _memory.ToArray()));
-                switch (inputComponent.CurrentWord.Value.ToLower())
+                switch (inputComponent.CurrentWord.Value.ToLower()) //TODO check if word starts with else error sound
                 {
                     case "fire":
                         ClearCurrentWord(inputComponent);
