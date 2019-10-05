@@ -1,5 +1,6 @@
 ﻿using SystemBase;
 using Systems.InputHandling.Events;
+using Systems.Inventory;
 using UniRx;
 using UniRx.Triggers;
 using UnityEngine;
@@ -7,9 +8,14 @@ using UnityEngine;
 namespace Systems.InputHandling
 {
     [GameSystem]
-    public class InputSystem : GameSystem<InputComponent>
+    public class InputSystem : GameSystem<InputComponent, InventoryComponent>
     {
         private readonly InputConfig _inputConfig = new InputConfig();
+
+        public override void Register(InventoryComponent component)
+        {
+            throw new System.NotImplementedException();
+        }
 
         public override void Register(InputComponent inputComponent)
         {

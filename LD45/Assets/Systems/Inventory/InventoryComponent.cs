@@ -1,13 +1,22 @@
-﻿using SystemBase;
-using UnityEngine;
+﻿using System;
+using System.Collections.Generic;
+using SystemBase;
+using UniRx;
 
 namespace Systems.Inventory
 {
     public class InventoryComponent : GameComponent
     {
-        public char KeyValue;
-        public Sprite KeyThumbnail;
-        public float KeyHighlightValue = .0f;
-        public bool KeyIsActive = false;
+        public ReactiveProperty<List<char>> CollectedKeys = new ReactiveProperty<List<char>>(
+            new List<char>
+        {
+            'n',
+            'o',
+            't',
+            'h',
+            'i',
+            'n',
+            'g'
+        });
     }
 }

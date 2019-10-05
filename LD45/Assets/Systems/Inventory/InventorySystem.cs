@@ -1,35 +1,31 @@
-﻿using System.Collections.Generic;
-using SystemBase;
+﻿using SystemBase;
 using UniRx;
 using Systems.InputHandling.Events;
+using Systems.Inventory.Actions;
 
 namespace Systems.Inventory
 {
     [GameSystem()]
-    public class InventorySystem : GameSystem<InventoryComponent, InputComponent>
+    public class InventorySystem : GameSystem<InventoryComponent>
     {
-        public List<InventoryComponent> _availableKeys = new List<InventoryComponent>();
         public float highlightValue = .0f;
 
         public override void Init()
         {
             base.Init();
 
-            RegisterValidInputEventHandler();
-            RegisterWordCompletedEventHandler();
+            //RegisterValidInputEventHandler();
+            //RegisterWordCompletedEventHandler();
         }
 
         public override void Register(InventoryComponent component)
         {
-            _availableKeys.Add(component);
+            MessageBroker.Default
+                .Receive<ActKeyCollected>()
+                .Subscribe(message => AddKeyToCollectedKeys(component, message.Key));
         }
 
-        public override void Register(InputComponent component)
-        {
-            component.TimeLeft.Subscribe(f => UpdateHighlightedKeys(f));
-        }
-
-        private void RegisterValidInputEventHandler()
+        /*private void RegisterValidInputEventHandler()
         {
             MessageBroker.Default
                 .Receive<InputValidKey>()
@@ -45,7 +41,7 @@ namespace Systems.Inventory
 
         private void HighlightKey(InputValidKey validKeyEvent)
         {
-            var element = _availableKeys.Find(d => d.KeyValue == validKeyEvent.CharacterInput);
+            var element = CollectedKeys.Find(d => d.KeyValue == validKeyEvent.CharacterInput);
 
             if (element != null)
             {
@@ -55,7 +51,7 @@ namespace Systems.Inventory
 
         private void UpdateHighlightedKeys(float newHighlightValue)
         {
-            foreach (InventoryComponent component in _availableKeys)
+            foreach (KeyComponent component in CollectedKeys)
             {
                 if (component.KeyIsActive)
                 {
@@ -66,11 +62,19 @@ namespace Systems.Inventory
 
         private void ResetKeyHighlighting()
         {
-            foreach (InventoryComponent component in _availableKeys)
+            foreach (KeyComponent component in CollectedKeys)
             {
                 component.KeyHighlightValue = .0f;
                 component.KeyIsActive = false;
             }
+        }*/
+
+
+
+
+        private void AddKeyToCollectedKeys(InventoryComponent component, char key)
+        {
+            component.CollectedKeys.Value.Add(key);
         }
     }
 }
