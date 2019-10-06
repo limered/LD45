@@ -10,7 +10,6 @@ namespace Systems.InputHandling
     [GameSystem]
     public class InputSystem : GameSystem<InputComponent, InventoryComponent>
     {
-        private readonly InputConfig _inputConfig = new InputConfig();
         private InventoryComponent _inventoryComponent;
 
         public override void Register(InventoryComponent component)
@@ -82,6 +81,7 @@ namespace Systems.InputHandling
             }
             else
             {
+                ClearCurrentWord(component);
                 // TODO: Play error input sound
             }
         }
