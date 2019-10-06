@@ -55,14 +55,11 @@ namespace Systems.InputHandling
 
         private void ClearCurrentWord(InputComponent inputComponent)
         {
-            foreach(char c in inputComponent.CurrentWord.Value)
-            {
-                MessageBroker.Default.Publish(new EvtInputFinished { CharacterInput = c }); //TODO check for last char
-            }
+            MessageBroker.Default.Publish(new EvtInputFinished { });
 
             inputComponent.CurrentWord.Value = string.Empty;
             inputComponent.TimeLeft.Value = 0;
-            inputComponent.StartedTyping.SetValueAndForceNotify(false);
+            inputComponent.StartedTyping.Value = false;
         }
 
         private void NotifyWordCompleted(InputWordType inputWordType)
@@ -79,9 +76,8 @@ namespace Systems.InputHandling
         {
             if (_inventoryComponent.CollectedKeys.Value.Contains(c))
             {
-                component.TimeLeft.Value = component.MaxTime;
-                CheckForCompletedWord(component);
                 NotifyValidKeyInput(c);
+                CheckForCompletedWord(component);
                 // TODO: Play successful input sound
             }
             else

@@ -8,6 +8,5 @@ namespace Systems.InputHandling.Events
 {
     public class EvtInputFinished
     {
-        public char CharacterInput;
     }
 }

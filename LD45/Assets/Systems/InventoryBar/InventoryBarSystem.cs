@@ -97,14 +97,17 @@ namespace Systems.InventoryBar
             _inputComponent.TimeLeft.TakeUntil(
                     MessageBroker.Default.Receive<EvtInputFinished>()
                 )
-                .DoOnCompleted(() => ResetHighlightKey(keyComponent))
+                .DoOnTerminate(() => ResetHighlightKey(keyComponent))
                 .Subscribe(time => SetColorOfPressedButton(keyComponent, time));
         }
 
         private void ResetHighlightKey(KeyComponent keyComponent)
         {
-            keyComponent.gameObject.GetComponent<Image>().color = _inventoryBarComponent.NormalBackgroundColor;
-            keyComponent.gameObject.GetComponentInChildren<Text>().color = _inventoryBarComponent.NormalTextColor;
+            Observable.Timer(TimeSpan.FromMilliseconds(500)).Subscribe(_ =>
+            {
+                keyComponent.gameObject.GetComponent<Image>().color = _inventoryBarComponent.NormalBackgroundColor;
+                keyComponent.gameObject.GetComponentInChildren<Text>().color = _inventoryBarComponent.NormalTextColor;
+            });
         }
     }
 }
