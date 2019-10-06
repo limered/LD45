@@ -5,6 +5,7 @@ using Systems.Health.Events;
 using Systems.InteractableObjects;
 using Systems.InteractableObjects.Events;
 using UniRx;
+using Utils.Unity;
 using Object = UnityEngine.Object;
 
 namespace Assets.Systems.InteractableObjects
@@ -42,7 +43,7 @@ namespace Assets.Systems.InteractableObjects
         {
             MessageBroker.Default.Publish(new ActDropSpawnKeys
             {
-                Position = component.gameObject.transform.position,
+                Position = component.gameObject.transform.position.XZ(),
                 KeysToDrop = component.WordToDrop.ToCharArray()
             });
             Object.Destroy(component.gameObject);
