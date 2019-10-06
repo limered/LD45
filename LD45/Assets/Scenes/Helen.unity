@@ -415,6 +415,44 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4448715176818110128, guid: 698eb4e403638ee439d3e3ff9303aabf,
+        type: 3}
+      propertyPath: AttackPrefabs.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4448715176818110128, guid: 698eb4e403638ee439d3e3ff9303aabf,
+        type: 3}
+      propertyPath: AttackPrefabs.Array.data[1].WordType
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4448715176818110128, guid: 698eb4e403638ee439d3e3ff9303aabf,
+        type: 3}
+      propertyPath: AttackPrefabs.Array.data[1].Prefab
+      value: 
+      objectReference: {fileID: 8279525143927011101, guid: 3b83b2d03240a68469b269f02bb7f6e7,
+        type: 3}
+    - target: {fileID: 4448715176818110128, guid: 698eb4e403638ee439d3e3ff9303aabf,
+        type: 3}
+      propertyPath: AttackPrefabs.Array.data[2].WordType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4448715176818110128, guid: 698eb4e403638ee439d3e3ff9303aabf,
+        type: 3}
+      propertyPath: AttackPrefabs.Array.data[2].Prefab
+      value: 
+      objectReference: {fileID: 8279525143927011101, guid: 03d4254c90a22eb46af9ba889d430425,
+        type: 3}
+    - target: {fileID: 4448715176818110128, guid: 698eb4e403638ee439d3e3ff9303aabf,
+        type: 3}
+      propertyPath: AttackPrefabs.Array.data[3].Prefab
+      value: 
+      objectReference: {fileID: 8279525143927011101, guid: 26fca6aec5208b74a85b8767ef46b47d,
+        type: 3}
+    - target: {fileID: 4448715176818110128, guid: 698eb4e403638ee439d3e3ff9303aabf,
+        type: 3}
+      propertyPath: AttackPrefabs.Array.data[3].WordType
+      value: 4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 698eb4e403638ee439d3e3ff9303aabf, type: 3}
 --- !u!1 &670126284
