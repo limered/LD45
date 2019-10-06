@@ -20,11 +20,10 @@ namespace Systems.Enemy.Skeletor
     public class SceletorBrainSystem : GameSystem<PlayerComponent, Sceletor>
     {
         private readonly ReactiveProperty<PlayerComponent> _player = new ReactiveProperty<PlayerComponent>();
-        private IDisposable _scelletorDeathDisposable;
 
         public override void Init()
         {
-            _scelletorDeathDisposable = MessageBroker.Default.Receive<HealthEvtReachedZero>()
+            MessageBroker.Default.Receive<HealthEvtReachedZero>()
                 .Where(msg => msg.ObjectToKill.GetComponent<Sceletor>())
                 .Select(msg => msg.ObjectToKill.GetComponent<Sceletor>())
                 .Subscribe(KillSceletor);
@@ -32,6 +31,9 @@ namespace Systems.Enemy.Skeletor
 
         public override void Register(Sceletor component)
         {
+            component.WindUpBulb.SetActive(false);
+            component.AttackBulb.SetActive(false);
+
             _player.WhereNotNull()
                 .Subscribe(_ => component.FixedUpdateAsObservable()
                     .Select(a => component)
@@ -45,8 +47,8 @@ namespace Systems.Enemy.Skeletor
                 .Subscribe(collider => PlayerIsInSenseCollider(component))
                 .AddTo(component);
 
-            component.IsWindingUp.Subscribe(OnIsWindingChanged).AddTo(component);
-            component.IsAttacking.Subscribe(OnIsAttackingChanged).AddTo(component);
+            component.IsWindingUp.Subscribe(b => OnIsWindingChanged(component, b)).AddTo(component);
+            component.IsAttacking.Subscribe(b => OnIsAttackingChanged(component, b)).AddTo(component);
         }
 
         public override void Register(PlayerComponent component)
@@ -98,16 +100,42 @@ namespace Systems.Enemy.Skeletor
                 }).AddTo(sceletor); ;
         }
 
-        private void OnIsAttackingChanged(bool isAttacking)
+        private void SetBulbsToAttack(Sceletor component, bool attack)
         {
-            // TODO Show and Hide Attack Bubble
-            if (isAttacking) Debug.Log("Attack");
+            component.WindUpBulb.SetActive(!attack);
+            component.AttackBulb.SetActive(attack);
         }
 
-        private void OnIsWindingChanged(bool isWindingUp)
+        private void HideBulbs(Sceletor component)
         {
-            // TODO Show and Hide WindUp Bubble
-            if (isWindingUp) Debug.Log("Windup");
+            component.WindUpBulb.SetActive(false);
+            component.AttackBulb.SetActive(false);
+        }
+
+        private void OnIsAttackingChanged(Sceletor component, bool isAttacking)
+        {
+            if (isAttacking)
+            {
+                SetBulbsToAttack(component, true);
+                Debug.Log("Attack");
+            }
+            else
+            {
+                HideBulbs(component);
+            }
+        }
+
+        private void OnIsWindingChanged(Sceletor component, bool isWindingUp)
+        {
+            if (isWindingUp)
+            {
+                SetBulbsToAttack(component, false);
+                Debug.Log("Windup");
+            }
+            else
+            {
+                SetBulbsToAttack(component, true);
+            }
         }
 
         private void TakeAction(Sceletor enemy)
