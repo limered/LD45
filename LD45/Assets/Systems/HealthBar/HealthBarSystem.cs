@@ -38,7 +38,7 @@ namespace Systems.HealthBar
 
             _healthBarComponent.MaxHealthShown = _healthComponent.MaxHealth;
             _healthBarComponent.CurrentHealthShown = _healthComponent.MaxHealth;
-            _healthBarComponent.SetSpriteOfHeart();
+            SetSpriteOfHeart();
             _healthComponent.CurrentHealth.AsObservable().Where(_ => _healthBarComponent != null).Subscribe(OnHealthChanged)
                 .AddTo(_healthComponent);
         }
@@ -47,7 +47,22 @@ namespace Systems.HealthBar
         {
             _healthBarComponent.CurrentHealthShown = newHealth;
 
-            _healthBarComponent.SetSpriteOfHeart();
+            SetSpriteOfHeart();
+        }
+
+        private void SetSpriteOfHeart()
+        {
+            for (int i = 0; i < _healthBarComponent.MaxHealthShown; i++)
+            {
+                if (i < _healthBarComponent.CurrentHealthShown)
+                {
+                    _healthBarComponent.HeartImages[i].sprite = _healthBarComponent.FullHeart;
+                }
+                else
+                {
+                    _healthBarComponent.HeartImages[i].sprite = _healthBarComponent.EmptyHeart;
+                }
+            }
         }
     }
 }

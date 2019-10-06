@@ -11,21 +11,5 @@ namespace Systems.HealthBar
         public Image[] HeartImages;
         public Sprite FullHeart;
         public Sprite EmptyHeart;
-
-        public void SetSpriteOfHeart()
-        {
-            for(int i = 0; i < MaxHealthShown; i++)
-            {
-                if(i < CurrentHealthShown)
-                {
-                    HeartImages[i].sprite = FullHeart;
-                }
-                else
-                {
-                    HeartImages[i].sprite = EmptyHeart;
-                }
-            }
-
-        }
     }
 }
