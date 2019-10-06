@@ -7,6 +7,7 @@ using SystemBase;
 using Systems.InputHandling.Events;
 using Systems.Inventory;
 using Systems.Inventory.Actions;
+using Systems.Inventory.Events;
 using UniRx;
 using UnityEngine;
 using UnityEngine.UI;
@@ -73,7 +74,7 @@ namespace Systems.InventoryBar
 
             InitializeInventoryBar();
 
-            _inventoryComponent.CollectedKeys.Subscribe(keys => UpdateInventoryBar(keys.Last()));
+            MessageBroker.Default.Receive<EvtNewKeyCollected>().Subscribe(message => UpdateInventoryBar(message.NewKey));
         }
 
         public void InitializeInventoryBar()

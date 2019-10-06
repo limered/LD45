@@ -1,5 +1,6 @@
 ﻿using SystemBase;
 using Systems.Inventory.Actions;
+using Systems.Inventory.Events;
 using UniRx;
 using UnityEngine;
 
@@ -18,7 +19,18 @@ namespace Systems.Inventory
         private void AddKeyToCollectedKeys(InventoryComponent component, char key)
         {
             Debug.Log(key);
-            component.CollectedKeys.Value.Add(key);
+            if (component.CollectedKeys.Value.Contains(key))
+            {
+
+            }
+            else
+            {
+                MessageBroker.Default.Publish(new EvtNewKeyCollected
+                {
+                    NewKey = key
+                });
+                component.CollectedKeys.Value.Add(key);
+            }
         }
     }
 }
