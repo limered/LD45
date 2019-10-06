@@ -1,6 +1,7 @@
 ﻿using System;
 using SystemBase;
 using Systems.Attac.Actions;
+using Systems.Drop.Actions;
 using Systems.Health.Events;
 using Systems.InputHandling;
 using Systems.Movement;
@@ -25,7 +26,7 @@ namespace Systems.Enemy.Skeletor
         {
             _scelletorDeathDisposable = MessageBroker.Default.Receive<HealthEvtReachedZero>()
                 .Where(msg => msg.ObjectToKill.GetComponent<Sceletor>())
-                .Select(zero => zero.ObjectToKill.GetComponent<Sceletor>())
+                .Select(msg => msg.ObjectToKill.GetComponent<Sceletor>())
                 .Subscribe(KillSceletor);
         }
 
@@ -56,6 +57,11 @@ namespace Systems.Enemy.Skeletor
         private static void KillSceletor(Sceletor scelletor)
         {
             Object.Destroy(scelletor.gameObject);
+            MessageBroker.Default.Publish(new ActDropSpawnKeys
+            {
+                Position = scelletor.gameObject.transform.position,
+                KeysToDrop = new []{'h','i','t'}
+            });
         }
 
         private static void PlayerIsInSenseCollider(Sceletor sceletor)
