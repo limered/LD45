@@ -1,6 +1,7 @@
 ﻿using System;
 using SystemBase;
 using Systems.Attac.Actions;
+using Systems.Health.Events;
 using Systems.InputHandling;
 using Systems.Movement;
 using Systems.Player;
@@ -10,6 +11,7 @@ using UnityEngine;
 using Utils.Math;
 using Utils.Plugins;
 using Utils.Unity;
+using Object = UnityEngine.Object;
 
 namespace Systems.Enemy.Skeletor
 {
@@ -17,6 +19,15 @@ namespace Systems.Enemy.Skeletor
     public class SceletorBrainSystem : GameSystem<PlayerComponent, Sceletor>
     {
         private readonly ReactiveProperty<PlayerComponent> _player = new ReactiveProperty<PlayerComponent>();
+        private IDisposable _scelletorDeathDisposable;
+
+        public override void Init()
+        {
+            _scelletorDeathDisposable = MessageBroker.Default.Receive<HealthEvtReachedZero>()
+                .Where(msg => msg.ObjectToKill.GetComponent<Sceletor>())
+                .Select(zero => zero.ObjectToKill.GetComponent<Sceletor>())
+                .Subscribe(KillSceletor);
+        }
 
         public override void Register(Sceletor component)
         {
@@ -42,6 +53,11 @@ namespace Systems.Enemy.Skeletor
             _player.Value = component;
         }
 
+        private static void KillSceletor(Sceletor scelletor)
+        {
+            Object.Destroy(scelletor.gameObject);
+        }
+
         private static void PlayerIsInSenseCollider(Sceletor sceletor)
         {
             if (!sceletor.CanFire) return;
@@ -62,7 +78,8 @@ namespace Systems.Enemy.Skeletor
                     });
                     sceletor.IsWindingUp.Value = false;
                     sceletor.IsAttacking.Value = true;
-                });
+                })
+                .AddTo(sceletor);
 
             var timeBetweenAttacs = sceletor.WindUpTimeInMs + sceletor.AttackTime;
 
@@ -72,7 +89,7 @@ namespace Systems.Enemy.Skeletor
                 {
                     sceletor.CanFire = true;
                     sceletor.IsAttacking.Value = false;
-                });
+                }).AddTo(sceletor); ;
         }
 
         private void OnIsAttackingChanged(bool isAttacking)
