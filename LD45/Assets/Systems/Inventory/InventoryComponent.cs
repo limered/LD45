@@ -17,13 +17,7 @@ namespace Systems.Inventory
             'h',
             'i',
             'n',
-            'g',
-            'm',
-            'a',
-            'e',
-            'f',
-            'r',
-            'c'
+            'g'
         });
     }
 }
