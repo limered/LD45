@@ -10,6 +10,15 @@ GameObject:
   m_Component:
   - component: {fileID: 852663335946685924}
   - component: {fileID: 2020283327605516241}
+  - component: {fileID: 5151249395035708626}
+  - component: {fileID: 5151249395035708627}
+  - component: {fileID: 5151249395035708624}
+  - component: {fileID: 5151249395035708625}
+  - component: {fileID: 5151249395035708630}
+  - component: {fileID: 5151249395035708631}
+  - component: {fileID: 5151249395035708628}
+  - component: {fileID: 1192904623}
+  - component: {fileID: 1451442279777307321}
   m_Layer: 0
   m_Name: Model
   m_TagString: Untagged
@@ -205,6 +214,19 @@ MonoBehaviour:
   MaxHealth: 1
   CurrentHealth:
     value: 1
+--- !u!114 &1451442279777307321
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5151249395035708629}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63bb8996387acf24f9ffed336d0797b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TheRoom: {fileID: 0}
 --- !u!1 &5151249395994092869
 GameObject:
   m_ObjectHideFlags: 0

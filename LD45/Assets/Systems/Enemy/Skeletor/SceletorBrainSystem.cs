@@ -6,6 +6,7 @@ using Systems.Health.Events;
 using Systems.InputHandling;
 using Systems.Movement;
 using Systems.Player;
+using Systems.Room;
 using UniRx;
 using UniRx.Triggers;
 using UnityEngine;
@@ -140,7 +141,7 @@ namespace Systems.Enemy.Skeletor
 
         private void TakeAction(Sceletor enemy)
         {
-            if (_player.Value.IsMoving)
+            if (enemy.GetComponent<RoomEnemyComponent>().TheRoom.PlayerInside && _player.Value.IsMoving)
             {
                 var directionToPlayer = enemy.transform.position.DirectionTo(_player.Value.transform.position);
                 enemy.GetComponent<MovementComponent>().Direction.Value = directionToPlayer.XZ();
