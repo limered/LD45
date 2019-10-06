@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using SystemBase;
 using UniRx;
+using UnityEngine;
 
 namespace Systems.Inventory
 {

@@ -20,7 +20,7 @@ namespace Systems.Nomes
                 .Subscribe(Hit)
                 .AddTo(component);
 
-            Observable.Timer(TimeSpan.FromMilliseconds(500))
+            Observable.Timer(TimeSpan.FromMilliseconds(component.Lifetime))
                 .Subscribe(_ => Object.Destroy(component.gameObject))
                 .AddTo(component);
         }
