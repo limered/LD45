@@ -60,7 +60,7 @@ namespace Systems.Enemy.Skeletor
             MessageBroker.Default.Publish(new ActDropSpawnKeys
             {
                 Position = scelletor.gameObject.transform.position,
-                KeysToDrop = new []{'h','i','t'}
+                KeysToDrop = scelletor.WordToDrop.ToCharArray()
             });
         }
 

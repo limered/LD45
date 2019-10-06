@@ -148,6 +148,7 @@ MonoBehaviour:
   WindUpTimeInMs: 1000
   AttackTime: 500
   CanFire: 1
+  WordToDrop: hit
   IsWindingUp:
     value: 0
   IsAttacking:
