@@ -88,7 +88,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 7738ecda8a0964b4d84d2174a9927e82, type: 2}
+  - {fileID: 2100000, guid: 7007b7b06a1bd634c8296d36386b0f7d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1372,11 +1372,6 @@ PrefabInstance:
       propertyPath: TheRoom
       value: 
       objectReference: {fileID: 5150436854621645840}
-    - target: {fileID: 5151249395035708628, guid: 9837e09f893c58146aa6bd75d37cb142,
-        type: 3}
-      propertyPath: WordToDrop
-      value: hit
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9837e09f893c58146aa6bd75d37cb142, type: 3}
 --- !u!4 &1949501584250827 stripped
