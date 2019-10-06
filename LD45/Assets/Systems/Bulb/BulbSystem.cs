@@ -24,7 +24,8 @@ namespace Systems.Bulb
             component.CurrentImage.sprite = component.BulbSprites[(int) word];
 
             Observable.Timer(TimeSpan.FromMilliseconds(component.Lifetime))
-                .Subscribe(_ => component.CurrentImage.gameObject.SetActive(false));
+                .Subscribe(_ => component.CurrentImage.gameObject.SetActive(false))
+                .AddTo(component);
         }
     }
 }
