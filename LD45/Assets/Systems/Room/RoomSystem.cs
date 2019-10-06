@@ -1,5 +1,6 @@
 ﻿using SystemBase;
 using Systems.Camera;
+using Systems.Health.Events;
 using Systems.Player;
 using UniRx;
 using UniRx.Triggers;
@@ -20,7 +21,12 @@ namespace Systems.Room
             component.PlayerSensor.OnTriggerExitAsObservable()
                 .Where(collider => collider.GetComponent<PlayerComponent>())
                 .Select(_ => component)
-                .Subscribe(PlayerExited)
+                .Subscribe(PlayerExits)
+                .AddTo(component);
+
+            MessageBroker.Default.Receive<HealthEvtReachedZero>()
+                .Where(zero => zero.ObjectToKill.GetComponent<PlayerComponent>())
+                .Subscribe(zero => component.PlayerInside = false)
                 .AddTo(component);
         }
 
@@ -34,7 +40,7 @@ namespace Systems.Room
             roomComponent.PlayerInside = true;
         }
 
-        private void PlayerExited(RoomComponent roomComponent)
+        private void PlayerExits(RoomComponent roomComponent)
         {
             roomComponent.PlayerInside = false;
         }
