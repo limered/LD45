@@ -63,6 +63,15 @@ MonoBehaviour:
   - WordType: 1
     Prefab: {fileID: 8279525143927011101, guid: 40db94e4ab5f8254d89e680041c29a46,
       type: 3}
+  - WordType: 3
+    Prefab: {fileID: 8279525143927011101, guid: 3b83b2d03240a68469b269f02bb7f6e7,
+      type: 3}
+  - WordType: 0
+    Prefab: {fileID: 8279525143927011101, guid: 03d4254c90a22eb46af9ba889d430425,
+      type: 3}
+  - WordType: 4
+    Prefab: {fileID: 8279525143927011101, guid: 26fca6aec5208b74a85b8767ef46b47d,
+      type: 3}
 --- !u!114 &535233989
 MonoBehaviour:
   m_ObjectHideFlags: 0
