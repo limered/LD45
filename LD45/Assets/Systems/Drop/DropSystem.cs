@@ -4,6 +4,7 @@ using Systems.Interaction.Collectable;
 using Systems.Inventory.Actions;
 using UniRx;
 using UnityEngine;
+using UnityEngine.UI;
 using Utils.Math;
 
 namespace Systems.Drop
@@ -42,6 +43,11 @@ namespace Systems.Drop
                 keyInstance.GetComponent<DroppedKeyComponent>().Value = c;
                 var body = keyInstance.GetComponent<Rigidbody>();
                 body.velocity = new Vector3().RandomVector()*3;
+                Text[] textChildren = keyInstance.gameObject.GetComponentsInChildren<Text>();
+                foreach(Text child in textChildren)
+                {
+                    child.text = c.ToString().ToUpper();
+                }
             }
         }
     }
