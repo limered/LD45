@@ -40,6 +40,8 @@ namespace Systems.Drop
                     new Vector3(msg.Position.x, 1, msg.Position.y),
                     Quaternion.Euler(new Vector3().RandomVector()));
                 keyInstance.GetComponent<DroppedKeyComponent>().Value = c;
+                var body = keyInstance.GetComponent<Rigidbody>();
+                body.velocity = new Vector3().RandomVector()*3;
             }
         }
     }
