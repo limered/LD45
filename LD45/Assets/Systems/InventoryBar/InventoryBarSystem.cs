@@ -70,6 +70,7 @@ namespace Systems.InventoryBar
                 keyComponent.KeyValue = _inventoryComponent.CollectedKeys.Value[i];
                 keyComponent.KeyIsActive = true;
                 keyComponent.KeyHighlightValue = 255f;
+                key.GetComponent<Image>().sprite = keyComponent.KeyThumbnail;
 
                 key.GetComponentInChildren<Text>().text = _inventoryComponent.CollectedKeys.Value[i].ToString();
                 _inventoryBarComponent.Keys.Add(key);

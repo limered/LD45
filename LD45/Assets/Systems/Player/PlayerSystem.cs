@@ -17,7 +17,7 @@ namespace Systems.Player
             component.GetComponent<MovementComponent>().Direction
                 .Subscribe(dir => component.IsMoving = dir.magnitude > 0);
 
-            MessageBroker.Default.Receive<InputWordCompleted>()
+            MessageBroker.Default.Receive<EvtInputWordCompleted>()
                 .Select(completed => new { word = completed, player = component })
                 .Subscribe(obj => Attack(obj.player, obj.word))
                 .AddTo(component);
@@ -58,7 +58,7 @@ namespace Systems.Player
             comp.Direction.Value = movementDirection;
         }
 
-        private void Attack(PlayerComponent player, InputWordCompleted word)
+        private void Attack(PlayerComponent player, EvtInputWordCompleted word)
         {
             MessageBroker.Default.Publish(new ActAttackSpawn
             {
