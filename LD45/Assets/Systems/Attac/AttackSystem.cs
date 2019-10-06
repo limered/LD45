@@ -3,6 +3,7 @@ using System.Linq;
 using SystemBase;
 using Systems.Attac.Actions;
 using Systems.InputHandling;
+using Systems.Nomes;
 using Systems.Player;
 using UniRx;
 using UnityEngine;
@@ -36,6 +37,7 @@ namespace Systems.Attac
                         new Vector3(attcSpwMsg.Position.x, 0, attcSpwMsg.Position.y),
                         Quaternion.Euler(attcSpwMsg.Direction.x, 0, attcSpwMsg.Direction.y));
                     attackObject.GetComponent<HitComponent>().Originator = attcSpwMsg.Originator;
+                    attackObject.transform.SetParent(attcSpwMsg.Originator.transform);
                     break;
 
                 case InputWordType.Key:

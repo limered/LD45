@@ -1,7 +1,7 @@
 ﻿using SystemBase;
 using UnityEngine;
 
-namespace Systems.Attac
+namespace Systems.Nomes
 {
     public class HitComponent : GameComponent
     {
