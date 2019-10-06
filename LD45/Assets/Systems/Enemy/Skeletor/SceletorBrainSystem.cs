@@ -56,12 +56,12 @@ namespace Systems.Enemy.Skeletor
 
         private static void KillSceletor(Sceletor scelletor)
         {
-            Object.Destroy(scelletor.gameObject);
             MessageBroker.Default.Publish(new ActDropSpawnKeys
             {
                 Position = scelletor.gameObject.transform.position,
                 KeysToDrop = scelletor.WordToDrop.ToCharArray()
             });
+            Object.Destroy(scelletor.gameObject);
         }
 
         private static void PlayerIsInSenseCollider(Sceletor sceletor)

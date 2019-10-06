@@ -9,6 +9,7 @@ using Systems.Inventory;
 using UniRx;
 using UnityEngine;
 using UnityEngine.UI;
+using Object = UnityEngine.Object;
 
 namespace Systems.InventoryBar
 {
@@ -76,8 +77,8 @@ namespace Systems.InventoryBar
         {
             for (int i = 0; i < _inventoryComponent.CollectedKeys.Value.Count(); i++)
             {
-                GameObject key = GameObject.Instantiate(_inventoryBarComponent.KeyPrefab);
-                KeyComponent keyComponent = key.GetComponent<KeyComponent>();
+                var key = Object.Instantiate(_inventoryBarComponent.KeyPrefab, _inventoryBarComponent.KeysPanel.transform);
+                var keyComponent = key.GetComponent<KeyComponent>();
                 keyComponent.KeyValue = _inventoryComponent.CollectedKeys.Value[i];
                 keyComponent.KeyIsActive = true;
                 keyComponent.KeyHighlightValue = 255f;
@@ -88,7 +89,6 @@ namespace Systems.InventoryBar
 
                 key.GetComponentInChildren<Text>().text = _inventoryComponent.CollectedKeys.Value[i].ToString();
                 _inventoryBarComponent.Keys.Add(key);
-                key.transform.SetParent(_inventoryBarComponent.KeysPanel.transform);
             }
         }
 
