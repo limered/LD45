@@ -106,7 +106,6 @@ namespace Systems.Enemy.Skeletor
             if (isAttacking)
             {
                 SetBulbsToAttack(component, true);
-                Debug.Log("Attack");
             }
             else
             {
@@ -116,15 +115,7 @@ namespace Systems.Enemy.Skeletor
 
         private void OnIsWindingChanged(Sceletor component, bool isWindingUp)
         {
-            if (isWindingUp)
-            {
-                SetBulbsToAttack(component, false);
-                Debug.Log("Windup");
-            }
-            else
-            {
-                SetBulbsToAttack(component, true);
-            }
+            SetBulbsToAttack(component, !isWindingUp);
         }
     }
 }

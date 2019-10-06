@@ -18,7 +18,6 @@ namespace Systems.Inventory
 
         private void AddKeyToCollectedKeys(InventoryComponent component, char key)
         {
-            Debug.Log(key);
             if (component.CollectedKeys.Value.Contains(key))
             {
 
