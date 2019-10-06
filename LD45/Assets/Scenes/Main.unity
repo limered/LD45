@@ -373,7 +373,7 @@ PrefabInstance:
     - target: {fileID: 5151249395035708628, guid: 9837e09f893c58146aa6bd75d37cb142,
         type: 3}
       propertyPath: WordToDrop
-      value: megahit
+      value: fire
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9837e09f893c58146aa6bd75d37cb142, type: 3}
@@ -444,6 +444,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4448715176818110128, guid: 698eb4e403638ee439d3e3ff9303aabf,
+        type: 3}
+      propertyPath: AttackPrefabs.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4448715176818110128, guid: 698eb4e403638ee439d3e3ff9303aabf,
+        type: 3}
+      propertyPath: AttackPrefabs.Array.data[4].WordType
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4448715176818110128, guid: 698eb4e403638ee439d3e3ff9303aabf,
+        type: 3}
+      propertyPath: AttackPrefabs.Array.data[4].Prefab
+      value: 
+      objectReference: {fileID: 8279525143927011101, guid: a5976457f90c36943b87d2ebf107b9d8,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 698eb4e403638ee439d3e3ff9303aabf, type: 3}
 --- !u!1 &1571028181
@@ -685,6 +701,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.y
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4756487735810439546, guid: 6c32bfde614b7094cb0745f29f74534d,
+        type: 3}
+      propertyPath: BulbSprites.Array.size
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6c32bfde614b7094cb0745f29f74534d, type: 3}
