@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using SystemBase;
 using Systems.InputHandling.Events;
 using Systems.Inventory;
+using Systems.Inventory.Actions;
 using UniRx;
 using UnityEngine;
 using UnityEngine.UI;
@@ -71,25 +72,38 @@ namespace Systems.InventoryBar
             }
 
             InitializeInventoryBar();
+
+            _inventoryComponent.CollectedKeys.Subscribe(keys => UpdateInventoryBar(keys.Last()));
         }
 
         public void InitializeInventoryBar()
         {
             for (int i = 0; i < _inventoryComponent.CollectedKeys.Value.Count(); i++)
             {
-                var key = Object.Instantiate(_inventoryBarComponent.KeyPrefab, _inventoryBarComponent.KeysPanel.transform);
-                var keyComponent = key.GetComponent<KeyComponent>();
-                keyComponent.KeyValue = _inventoryComponent.CollectedKeys.Value[i];
-                keyComponent.KeyIsActive = true;
-                keyComponent.KeyHighlightValue = 255f;
-                key.GetComponent<Image>().sprite = keyComponent.KeyThumbnail;
-
-                keyComponent.gameObject.GetComponent<Image>().color = _inventoryBarComponent.NormalBackgroundColor;
-                keyComponent.gameObject.GetComponentInChildren<Text>().color = _inventoryBarComponent.NormalTextColor;
-
-                key.GetComponentInChildren<Text>().text = _inventoryComponent.CollectedKeys.Value[i].ToString();
-                _inventoryBarComponent.Keys.Add(key);
+                InitKey(_inventoryComponent.CollectedKeys.Value[i]);
             }
+        }
+
+        private void InitKey(char keyInput)
+        {
+            GameObject key = GameObject.Instantiate(_inventoryBarComponent.KeyPrefab, _inventoryBarComponent.KeysPanel.transform);
+            KeyComponent keyComponent = key.GetComponent<KeyComponent>();
+            keyComponent.KeyIsActive = true;
+            keyComponent.KeyHighlightValue = 255f;
+            key.GetComponent<Image>().sprite = keyComponent.KeyThumbnail;
+
+            keyComponent.gameObject.GetComponent<Image>().color = _inventoryBarComponent.NormalBackgroundColor;
+            keyComponent.gameObject.GetComponentInChildren<Text>().color = _inventoryBarComponent.NormalTextColor;
+
+            keyComponent.KeyValue = keyInput;
+            key.GetComponentInChildren<Text>().text = keyInput.ToString().ToUpper();
+
+            _inventoryBarComponent.Keys.Add(key);
+        }
+
+        public void UpdateInventoryBar(char newKey)
+        {
+            InitKey(newKey);
         }
 
         private void HighlightKey(KeyComponent keyComponent)
