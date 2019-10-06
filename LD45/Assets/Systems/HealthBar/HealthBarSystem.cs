@@ -22,11 +22,8 @@ namespace Systems.HealthBar
 
         public override void Register(HealthBarComponent component)
         {
-            if (component.GetComponent<PlayerComponent>())
-            {
-                _healthBarComponent = component;
-                FinishRegistration();
-            }
+            _healthBarComponent = component;
+            FinishRegistration();
         }
 
         private void FinishRegistration()
