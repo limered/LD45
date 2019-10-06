@@ -2,6 +2,8 @@
 using SystemBase;
 using Systems.Health;
 using Systems.Health.Actions;
+using Systems.InteractableObjects;
+using Systems.InteractableObjects.Events;
 using UniRx;
 using UniRx.Triggers;
 using UnityEngine;
@@ -19,6 +21,11 @@ namespace Systems.Nomes
                 .Subscribe(Fire)
                 .AddTo(component);
 
+            component.OnTriggerEnterAsObservable()
+                .Where(collider => collider.GetComponent<FireDoorComponent>())
+                .Subscribe(KillFireDoor)
+                .AddTo(component);
+
             Observable.Timer(TimeSpan.FromMilliseconds(component.Lifetime))
                 .Subscribe(_ => Object.Destroy(component.gameObject))
                 .AddTo(component);
@@ -34,6 +41,11 @@ namespace Systems.Nomes
                 Value = 1,
                 ComponentToChange = hlth
             });
+        }
+
+        private static void KillFireDoor(Collider coll)
+        {
+            MessageBroker.Default.Publish(new EvtKillDoor{ ObjectToKill = coll.gameObject });
         }
     }
 }

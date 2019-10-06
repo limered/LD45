@@ -1,11 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using SystemBase;
 using Systems.Health;
 using Systems.Health.Actions;
+using Systems.InteractableObjects;
+using Systems.InteractableObjects.Events;
 using UniRx;
 using UniRx.Triggers;
 using UnityEngine;
@@ -23,6 +22,11 @@ namespace Systems.Nomes
                 .Subscribe(Key)
                 .AddTo(component);
 
+            component.OnTriggerEnterAsObservable()
+                .Where(collider => collider.GetComponent<KeyDoorComponent>())
+                .Subscribe(KillKeyDoor)
+                .AddTo(component);
+
             Observable.Timer(TimeSpan.FromMilliseconds(component.Lifetime))
                 .Subscribe(_ => Object.Destroy(component.gameObject))
                 .AddTo(component);
@@ -38,6 +42,11 @@ namespace Systems.Nomes
                 Value = 1,
                 ComponentToChange = hlth
             });
+        }
+
+        private static void KillKeyDoor(Collider coll)
+        {
+            MessageBroker.Default.Publish(new EvtKillDoor { ObjectToKill = coll.gameObject });
         }
     }
 }

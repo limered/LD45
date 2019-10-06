@@ -90,11 +90,10 @@ GameObject:
   m_Component:
   - component: {fileID: 5151249395035708626}
   - component: {fileID: 5151249395035708630}
-  - component: {fileID: 1192904623}
-  - component: {fileID: 639567380291929027}
   - component: {fileID: 5409729945974338896}
+  - component: {fileID: 2720973193267194964}
   m_Layer: 0
-  m_Name: Crate
+  m_Name: FireDoor
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -132,34 +131,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &1192904623
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5151249395035708629}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c8c022cd6514acdbd64ca97ce2e8a5d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MaxHealth: 1
-  CurrentHealth:
-    value: 1
---- !u!114 &639567380291929027
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5151249395035708629}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 361c8aac7aa6cd0438e53aa24760eb0e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  WordToDrop: key
 --- !u!65 &5409729945974338896
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -173,6 +144,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.5305282, y: 1, z: 1.5923748}
   m_Center: {x: -0.0156033635, y: 0, z: 1.2003365}
+--- !u!114 &2720973193267194964
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5151249395035708629}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c66974429629b7b459fc5d8578ee70fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5151249395994092869
 GameObject:
   m_ObjectHideFlags: 0

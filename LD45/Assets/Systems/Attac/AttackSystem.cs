@@ -50,7 +50,7 @@ namespace Systems.Attac
                     attackObject = Object.Instantiate(_attacks.AttackPrefabs.First(definition => definition.WordType == attcSpwMsg.Word).Prefab,
                         new Vector3(attcSpwMsg.Position.x, 0, attcSpwMsg.Position.y),
                         Quaternion.Euler(attcSpwMsg.Direction.x, 0, attcSpwMsg.Direction.y));
-                    attackObject.GetComponent<HitComponent>().Originator = attcSpwMsg.Originator;
+                    attackObject.GetComponent<KeyComponent>().Originator = attcSpwMsg.Originator;
                     attackObject.transform.SetParent(attcSpwMsg.Originator.transform);
                     break;
 
