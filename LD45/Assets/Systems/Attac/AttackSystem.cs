@@ -32,7 +32,7 @@ namespace Systems.Attac
             {
                 case InputWordType.Fire:
                     attackObject = Object.Instantiate(_attacks.AttackPrefabs.First(definition => definition.WordType == attcSpwMsg.Word).Prefab,
-                        new Vector3(attcSpwMsg.Position.x, 0, attcSpwMsg.Position.y),
+                        new Vector3(attcSpwMsg.Position.x, 1, attcSpwMsg.Position.y),
                         Quaternion.Euler(attcSpwMsg.Direction.x, 0, attcSpwMsg.Direction.y));
                     attackObject.GetComponent<FireComponent>().Originator = attcSpwMsg.Originator;
                     attackObject.transform.SetParent(attcSpwMsg.Originator.transform);
@@ -40,7 +40,7 @@ namespace Systems.Attac
 
                 case InputWordType.Hit:
                     attackObject = Object.Instantiate(_attacks.AttackPrefabs.First(definition => definition.WordType == attcSpwMsg.Word).Prefab,
-                        new Vector3(attcSpwMsg.Position.x, 0, attcSpwMsg.Position.y),
+                        new Vector3(attcSpwMsg.Position.x, 1, attcSpwMsg.Position.y),
                         Quaternion.Euler(attcSpwMsg.Direction.x, 0, attcSpwMsg.Direction.y));
                     attackObject.GetComponent<HitComponent>().Originator = attcSpwMsg.Originator;
                     attackObject.transform.SetParent(attcSpwMsg.Originator.transform);
@@ -56,7 +56,7 @@ namespace Systems.Attac
 
                 case InputWordType.Megahit:
                     attackObject = Object.Instantiate(_attacks.AttackPrefabs.First(definition => definition.WordType == attcSpwMsg.Word).Prefab,
-                        new Vector3(attcSpwMsg.Position.x, 0, attcSpwMsg.Position.y),
+                        new Vector3(attcSpwMsg.Position.x, 1, attcSpwMsg.Position.y),
                         Quaternion.Euler(attcSpwMsg.Direction.x, 0, attcSpwMsg.Direction.y));
                     attackObject.GetComponent<MegaHitComponent>().Originator = attcSpwMsg.Originator;
                     attackObject.transform.SetParent(attcSpwMsg.Originator.transform);
@@ -64,7 +64,7 @@ namespace Systems.Attac
 
                 case InputWordType.Magic:
                     attackObject = Object.Instantiate(_attacks.AttackPrefabs.First(definition => definition.WordType == attcSpwMsg.Word).Prefab,
-                        new Vector3(attcSpwMsg.Position.x, 0, attcSpwMsg.Position.y),
+                        new Vector3(attcSpwMsg.Position.x, 1, attcSpwMsg.Position.y),
                         Quaternion.Euler(attcSpwMsg.Direction.x, 0, attcSpwMsg.Direction.y));
                     attackObject.GetComponent<MagicComponent>().Originator = attcSpwMsg.Originator;
                     attackObject.transform.SetParent(attcSpwMsg.Originator.transform);
