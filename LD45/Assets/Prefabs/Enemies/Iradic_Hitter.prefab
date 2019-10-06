@@ -95,8 +95,9 @@ GameObject:
   - component: {fileID: 5151249395035708628}
   - component: {fileID: 1192904623}
   - component: {fileID: 1451442279777307321}
+  - component: {fileID: 634589141605739407}
   m_Layer: 0
-  m_Name: Sceletor
+  m_Name: Iradic_Hitter
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -184,7 +185,8 @@ MonoBehaviour:
   WindUpTimeInMs: 1000
   AttackTime: 500
   CanFire: 1
-  WordToDrop: megahit
+  AtackWord: 1
+  WordToDrop: hit
   WindUpBulb: {fileID: 5578972361891145178}
   AttackBulb: {fileID: 565719998685363795}
   IsWindingUp:
@@ -219,6 +221,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TheRoom: {fileID: 0}
+--- !u!114 &634589141605739407
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5151249395035708629}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f5154055e664a8ebb89eacd73e9cbf4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LastrandomVector: {x: 0, y: 0, z: 0}
 --- !u!1 &5151249395994092869
 GameObject:
   m_ObjectHideFlags: 0

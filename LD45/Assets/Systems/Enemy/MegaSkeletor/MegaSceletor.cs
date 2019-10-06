@@ -1,19 +1,15 @@
 ﻿using SystemBase;
-using Systems.InputHandling;
-using Systems.Movement;
 using UniRx;
 using UnityEngine;
 
-namespace Systems.Enemy.Skeletor
+namespace Systems.Enemy.MegaSkeletor
 {
-    [RequireComponent(typeof(MovementComponent))]
-    public class Sceletor : GameComponent
+    public class MegaSceletor:GameComponent
     {
         public GameObject PlayerSenseTrigger;
         public float WindUpTimeInMs;
         public float AttackTime;
         public bool CanFire = true;
-        public InputWordType AtackWord;
         public string WordToDrop;
         public GameObject WindUpBulb;
         public GameObject AttackBulb;

@@ -3,15 +3,11 @@ using SystemBase;
 using Systems.Attac.Actions;
 using Systems.Drop.Actions;
 using Systems.Health.Events;
-using Systems.InputHandling;
 using Systems.Movement;
 using Systems.Player;
-using Systems.Room;
 using UniRx;
 using UniRx.Triggers;
 using UnityEngine;
-using Utils.Math;
-using Utils.Plugins;
 using Utils.Unity;
 using Object = UnityEngine.Object;
 
@@ -35,14 +31,6 @@ namespace Systems.Enemy.Skeletor
             component.WindUpBulb.SetActive(false);
             component.AttackBulb.SetActive(false);
 
-            _player.WhereNotNull()
-                .Subscribe(_ => component.FixedUpdateAsObservable()
-                    .Select(a => component)
-                    .Subscribe(TakeAction)
-                    .AddTo(component)
-                )
-                .AddTo(component);
-
             component.PlayerSenseTrigger.OnTriggerStayAsObservable()
                 .Where(collider => collider.gameObject.CompareTag("Player"))
                 .Subscribe(collider => PlayerIsInSenseCollider(component))
@@ -61,7 +49,7 @@ namespace Systems.Enemy.Skeletor
         {
             MessageBroker.Default.Publish(new ActDropSpawnKeys
             {
-                Position = scelletor.gameObject.transform.position,
+                Position = scelletor.gameObject.transform.position.XZ(),
                 KeysToDrop = scelletor.WordToDrop.ToCharArray()
             });
             Object.Destroy(scelletor.gameObject);
@@ -80,7 +68,7 @@ namespace Systems.Enemy.Skeletor
                 {
                     MessageBroker.Default.Publish(new ActAttackSpawn
                     {
-                        Word = InputWordType.Hit,
+                        Word = sceletor.AtackWord,
                         Originator = sceletor.gameObject,
                         Position = sceletor.gameObject.transform.position.XZ(),
                         Direction = sceletor.GetComponent<MovementComponent>().Velocity
@@ -136,19 +124,6 @@ namespace Systems.Enemy.Skeletor
             else
             {
                 SetBulbsToAttack(component, true);
-            }
-        }
-
-        private void TakeAction(Sceletor enemy)
-        {
-            if (enemy.GetComponent<RoomEnemyComponent>().TheRoom.PlayerInside && _player.Value.IsMoving)
-            {
-                var directionToPlayer = enemy.transform.position.DirectionTo(_player.Value.transform.position);
-                enemy.GetComponent<MovementComponent>().Direction.Value = directionToPlayer.XZ();
-            }
-            else
-            {
-                enemy.GetComponent<MovementComponent>().Direction.Value = Vector2.zero;
             }
         }
     }
