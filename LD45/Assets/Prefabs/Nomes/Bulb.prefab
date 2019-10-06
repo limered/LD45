@@ -112,7 +112,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68f8fa648ca75bb49b766479c75ab97f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Bulb: {fileID: 2988302622688312925}
+  CurrentImage: {fileID: 6801488478375153402}
+  Lifetime: 500
   BulbSprites:
   - {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
   - {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
@@ -134,7 +135,7 @@ GameObject:
   - component: {fileID: 8328306830900560609}
   - component: {fileID: 6801488478375153402}
   m_Layer: 5
-  m_Name: White
+  m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
