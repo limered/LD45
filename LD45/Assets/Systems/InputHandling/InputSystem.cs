@@ -45,7 +45,7 @@ namespace Systems.InputHandling
         {
             if (inputComponent.StartedTyping.Value)
             {
-                inputComponent.TimeLeft.SetValueAndForceNotify(inputComponent.TimeLeft.Value - Time.deltaTime);
+                inputComponent.TimeLeft.Value -= Time.deltaTime;
                 if (inputComponent.TimeLeft.Value < 0)
                 {
                     ClearCurrentWord(inputComponent);
@@ -61,7 +61,7 @@ namespace Systems.InputHandling
             }
 
             inputComponent.CurrentWord.Value = string.Empty;
-            inputComponent.TimeLeft.SetValueAndForceNotify(inputComponent.MaxTime);
+            inputComponent.TimeLeft.Value = 0;
             inputComponent.StartedTyping.SetValueAndForceNotify(false);
         }
 
@@ -79,7 +79,7 @@ namespace Systems.InputHandling
         {
             if (_inventoryComponent.CollectedKeys.Value.Contains(c))
             {
-                component.TimeLeft.SetValueAndForceNotify(component.MaxTime);
+                component.TimeLeft.Value = component.MaxTime;
                 CheckForCompletedWord(component);
                 NotifyValidKeyInput(c);
                 // TODO: Play successful input sound

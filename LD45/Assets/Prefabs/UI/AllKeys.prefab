@@ -215,3 +215,15 @@ MonoBehaviour:
     type: 3}
   Keys: []
   KeysPanel: {fileID: 214232756885553392}
+  NormalTextColor:
+    serializedVersion: 2
+    rgba: 4278190080
+  NormalBackgroundColor:
+    serializedVersion: 2
+    rgba: 4288059030
+  HighlightTextColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  HighlightBackgroundColor:
+    serializedVersion: 2
+    rgba: 4294967295

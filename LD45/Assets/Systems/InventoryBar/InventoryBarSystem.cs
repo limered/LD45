@@ -19,7 +19,8 @@ namespace Systems.InventoryBar
         private InventoryComponent _inventoryComponent;
         private InputComponent _inputComponent;
 
-        private Color32 _currentHighlightColor = new Color32(255, 0, 0, 255);
+        private Color32 _currentHighlightTextColor;
+        private Color32 _currentHighlightBackgroundColor;
         public override void Register(InventoryComponent component)
         {
             _inventoryComponent = component;
@@ -47,8 +48,18 @@ namespace Systems.InventoryBar
 
         private void SetColorOfPressedButton(KeyComponent keyComponent, float time)
         {
-            keyComponent.gameObject.GetComponent<Image>().color = _currentHighlightColor; //TODO factor time
-            keyComponent.gameObject.GetComponentInChildren<Text>().color = _currentHighlightColor; //TODO factor time
+            float changeVal = time / _inputComponent.MaxTime;
+            _currentHighlightTextColor = Color32.Lerp(
+                _inventoryBarComponent.NormalTextColor,
+                _inventoryBarComponent.HighlightTextColor,
+                changeVal);
+            _currentHighlightBackgroundColor = Color32.Lerp(
+                _inventoryBarComponent.NormalBackgroundColor,
+                _inventoryBarComponent.HighlightBackgroundColor,
+                changeVal
+                );
+            keyComponent.gameObject.GetComponent<Image>().color = _currentHighlightBackgroundColor;
+            keyComponent.gameObject.GetComponentInChildren<Text>().color = _currentHighlightTextColor;
         }
 
         private void FinishRegistration()
@@ -72,6 +83,9 @@ namespace Systems.InventoryBar
                 keyComponent.KeyHighlightValue = 255f;
                 key.GetComponent<Image>().sprite = keyComponent.KeyThumbnail;
 
+                keyComponent.gameObject.GetComponent<Image>().color = _inventoryBarComponent.NormalBackgroundColor;
+                keyComponent.gameObject.GetComponentInChildren<Text>().color = _inventoryBarComponent.NormalTextColor;
+
                 key.GetComponentInChildren<Text>().text = _inventoryComponent.CollectedKeys.Value[i].ToString();
                 _inventoryBarComponent.Keys.Add(key);
                 key.transform.SetParent(_inventoryBarComponent.KeysPanel.transform);
@@ -89,8 +103,8 @@ namespace Systems.InventoryBar
 
         private void ResetHighlightKey(KeyComponent keyComponent)
         {
-            keyComponent.gameObject.GetComponent<Image>().color = keyComponent.NormalBackgroundColor;
-            keyComponent.gameObject.GetComponentInChildren<Text>().color = keyComponent.NormalTextColor;
+            keyComponent.gameObject.GetComponent<Image>().color = _inventoryBarComponent.NormalBackgroundColor;
+            keyComponent.gameObject.GetComponentInChildren<Text>().color = _inventoryBarComponent.NormalTextColor;
         }
     }
 }
