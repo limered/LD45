@@ -144,7 +144,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerSenseTrigger: {fileID: 5151249395994092869}
-  WindUpTimeInMs: 500
+  WindUpTimeInMs: 1000
   AttackTime: 500
   CanFire: 1
   IsWindingUp:
