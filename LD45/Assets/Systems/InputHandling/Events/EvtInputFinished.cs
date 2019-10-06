@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace Systems.InputHandling.Events
 {
-    public class InputWordCompleted
+    public class EvtInputFinished
     {
-        public InputWordType InputWord;
+        public char CharacterInput;
     }
 }

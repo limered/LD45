@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1009309566734148684}
   - component: {fileID: 1009309566734148686}
   - component: {fileID: 1009309566734148685}
+  - component: {fileID: 2554587960264857871}
   m_Layer: 5
   m_Name: KeyPrefab
   m_TagString: Untagged
@@ -74,6 +75,22 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &2554587960264857871
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1009309566734149043}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a80437d165f418f4ea012a7acbb1cbdb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  KeyValue: 90
+  KeyThumbnail: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  KeyHighlightValue: 0
+  KeyIsActive: 0
 --- !u!1 &1009309568146197422
 GameObject:
   m_ObjectHideFlags: 0

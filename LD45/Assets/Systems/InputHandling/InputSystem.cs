@@ -55,6 +55,11 @@ namespace Systems.InputHandling
 
         private void ClearCurrentWord(InputComponent inputComponent)
         {
+            foreach(char c in inputComponent.CurrentWord.Value)
+            {
+                MessageBroker.Default.Publish(new EvtInputFinished { CharacterInput = c }); //TODO check for last char
+            }
+
             inputComponent.CurrentWord.Value = string.Empty;
             inputComponent.TimeLeft.SetValueAndForceNotify(inputComponent.MaxTime);
             inputComponent.StartedTyping.SetValueAndForceNotify(false);
@@ -62,12 +67,12 @@ namespace Systems.InputHandling
 
         private void NotifyWordCompleted(InputWordType inputWordType)
         {
-            MessageBroker.Default.Publish(new InputWordCompleted { InputWord = inputWordType });
+            MessageBroker.Default.Publish(new EvtInputWordCompleted { InputWord = inputWordType });
         }
 
         private void NotifyValidKeyInput(char c)
         {
-            MessageBroker.Default.Publish(new InputValidKey { CharacterInput = c });
+            MessageBroker.Default.Publish(new EvtInputValidKey { CharacterInput = c });
         }
 
         private void HandleKeyInput(char c, InputComponent component)
