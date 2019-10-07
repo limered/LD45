@@ -1,13 +1,15 @@
-﻿using System;
+using System;
 using SystemBase;
 using Systems.Attac.Actions;
+using Systems.Dog.Events;
+using Systems.Health;
+using Systems.Health.Actions;
 using Systems.Health.Events;
 using Systems.InputHandling.Events;
 using Systems.Movement;
 using UniRx;
 using UniRx.Triggers;
 using UnityEngine;
-using UnityEngine.UI;
 using Utils.Unity;
 using Object = UnityEngine.Object;
 
@@ -38,8 +40,18 @@ namespace Systems.Player
                 .Where(msg => msg.ObjectToKill.GetComponent<PlayerComponent>())
                 .Subscribe(obj => PlayerDies(obj, component))
                 .AddTo(component);
+            MessageBroker.Default.Receive<HealthActSubtract>()
+                .Where(msg => msg.ComponentToChange.GetComponent<PlayerComponent>())
+                .Subscribe(obj => PlayerHitted(component))
+                .AddTo(component);
         }
 
+        private void PlayerHitted(PlayerComponent component)
+        {
+            HealthComponent health = component.GetComponent<HealthComponent>();
+            if (health.CurrentHealth.Value == 0) return;
+            component.GetComponentInChildren<Animator>().Play("Hitted");
+        }
         private void PlayerDies(HealthEvtReachedZero obj, PlayerComponent component)
         {
             component.GetComponentInChildren<Animator>().Play("Dead");
