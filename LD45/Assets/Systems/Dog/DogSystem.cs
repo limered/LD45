@@ -15,9 +15,11 @@ namespace Systems.Dog
     {
         public override void Register(EndDogComponent component)
         {
+            component.HeartsMoving.SetActive(false);
+
             component.OnTriggerEnterAsObservable()
                 .Where(collider => collider.GetComponent<PlayerComponent>())
-                .Subscribe(OnDogEndsGame)
+                .Subscribe(collider => OnDogEndsGame(collider, component))
                 .AddTo(component);
         }
 
@@ -29,8 +31,9 @@ namespace Systems.Dog
                 .AddTo(component);
         }
 
-        private void OnDogEndsGame(Collider coll)
+        private void OnDogEndsGame(Collider coll, EndDogComponent component)
         {
+            component.HeartsMoving.SetActive(true);
             MessageBroker.Default.Publish(new EvtDogEndsGame { });
             IoC.Game.GameStateContext.GoToState(new GameOver());
         }

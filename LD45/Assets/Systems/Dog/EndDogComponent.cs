@@ -6,5 +6,6 @@ namespace Systems.Dog
     public class EndDogComponent : GameComponent
     {
         public GameObject Originator { set; get; }
+        public GameObject HeartsMoving;
     }
 }
