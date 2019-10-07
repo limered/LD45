@@ -32,7 +32,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2784146020920016441}
-  - {fileID: 6725530968127601136}
+  - {fileID: 6894063337636582527}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -97,7 +97,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DoorPosition: {x: 0, y: 0, z: 0}
---- !u!1001 &2076690446696711830
+--- !u!1001 &2173165117925174041
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -107,7 +107,7 @@ PrefabInstance:
     - target: {fileID: 3670729781908036820, guid: 0618a5d79c2bff244a7bd32eb4254163,
         type: 3}
       propertyPath: m_Name
-      value: Shaddow_Nothing
+      value: Shadow_Nothing
       objectReference: {fileID: 0}
     - target: {fileID: 4720898573110902630, guid: 0618a5d79c2bff244a7bd32eb4254163,
         type: 3}
@@ -166,11 +166,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0618a5d79c2bff244a7bd32eb4254163, type: 3}
---- !u!4 &6725530968127601136 stripped
+--- !u!4 &6894063337636582527 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4720898573110902630, guid: 0618a5d79c2bff244a7bd32eb4254163,
     type: 3}
-  m_PrefabInstance: {fileID: 2076690446696711830}
+  m_PrefabInstance: {fileID: 2173165117925174041}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &3991881104703807854
 PrefabInstance:
