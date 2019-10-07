@@ -15,9 +15,9 @@ using Utils.Unity;
 namespace Assets.Systems.Enemy
 {
     [GameSystem]
-    public class EnemyAttackSystem:GameSystem<HitterComponent>
+    public class EnemyAttackSystem:GameSystem<EnemyAttackComponent>
     {
-        public override void Register(HitterComponent component)
+        public override void Register(EnemyAttackComponent component)
         {
             var windUp = component.GetComponent<WindUpComponent>();
             var enemyComponent = component.GetComponent<EnemyComponent>();
@@ -26,12 +26,12 @@ namespace Assets.Systems.Enemy
             component.BulbToShow.SetActive(false);
         }
 
-        private void AttackWithHit(HitterComponent component, EnemyComponent enemyComponent)
+        private void AttackWithHit(EnemyAttackComponent component, EnemyComponent enemyComponent)
         {
             component.BulbToShow.SetActive(true);
             MessageBroker.Default.Publish(new ActAttackSpawn
             {
-                Word = InputWordType.Hit,
+                Word = component.AttackType,
                 Originator = component.gameObject,
                 Position = component.gameObject.transform.position.XZ(),
                 Direction = Vector2.one,
