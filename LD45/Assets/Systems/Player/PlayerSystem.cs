@@ -42,9 +42,7 @@ namespace Systems.Player
 
         private void PlayerDies(HealthEvtReachedZero obj, PlayerComponent component)
         {
-            _currentPlayer.GetComponentInChildren<SpriteRenderer>().sprite = component.DeadPlayerSprite;
-
-            
+            component.GetComponentInChildren<Animator>().Play("Dead");
 
             Observable.Timer(TimeSpan.FromMilliseconds(1500))
                 .Subscribe(l => {
