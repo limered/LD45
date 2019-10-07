@@ -31,6 +31,7 @@ namespace Systems.Dog
 
         private void OnDogEndsGame(Collider coll)
         {
+            MessageBroker.Default.Publish(new EvtDogEndsGame { });
             IoC.Game.GameStateContext.GoToState(new GameOver());
         }
 
