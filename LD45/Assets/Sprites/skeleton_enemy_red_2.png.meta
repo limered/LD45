@@ -1,12 +1,20 @@
 fileFormatVersion: 2
+<<<<<<< develop
 guid: 5d84d888d07f7054aa8ca80981aa6b8b
+=======
+guid: 9f2fc9914e432f14b9b7d2d30eabb4c8
+>>>>>>> Add dog moving to door in startRoom
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
     mipMapMode: 0
+<<<<<<< develop
     enableMipMap: 0
+=======
+    enableMipMap: 1
+>>>>>>> Add dog moving to door in startRoom
     sRGBTexture: 1
     linearTexture: 0
     fadeOut: 0
@@ -34,6 +42,7 @@ TextureImporter:
     filterMode: -1
     aniso: -1
     mipBias: -100
+<<<<<<< develop
     wrapU: 1
     wrapV: 1
     wrapW: -1
@@ -41,6 +50,15 @@ TextureImporter:
   lightmap: 0
   compressionQuality: 50
   spriteMode: 1
+=======
+    wrapU: -1
+    wrapV: -1
+    wrapW: -1
+  nPOTScale: 1
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 0
+>>>>>>> Add dog moving to door in startRoom
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -49,9 +67,15 @@ TextureImporter:
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
+<<<<<<< develop
   alphaIsTransparency: 1
   spriteTessellationDetail: -1
   textureType: 8
+=======
+  alphaIsTransparency: 0
+  spriteTessellationDetail: -1
+  textureType: 0
+>>>>>>> Add dog moving to door in startRoom
   textureShape: 1
   singleChannelComponent: 0
   maxTextureSizeSet: 0
@@ -70,6 +94,7 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+<<<<<<< develop
   - serializedVersion: 3
     buildTarget: Standalone
     maxTextureSize: 2048
@@ -106,13 +131,19 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+=======
+>>>>>>> Add dog moving to door in startRoom
   spriteSheet:
     serializedVersion: 2
     sprites: []
     outline: []
     physicsShape: []
     bones: []
+<<<<<<< develop
     spriteID: 5e97eb03825dee720800000000000000
+=======
+    spriteID: 
+>>>>>>> Add dog moving to door in startRoom
     internalID: 0
     vertices: []
     indices: 

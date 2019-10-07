@@ -14,7 +14,7 @@ using Utils.Unity;
 namespace Systems.Enemy
 {
     [GameSystem(typeof(PlayerSystem), typeof(MovementSystem), typeof(RoomSystem))]
-    public class EnemyMovementSystem:GameSystem<PlayerComponent, FollowPlayerComponent, IradicMovementComponent, EndDogComponent>
+    public class EnemyMovementSystem:GameSystem<PlayerComponent, FollowPlayerComponent, IradicMovementComponent, EndDogComponent, StartDogComponent>
     {
         private readonly ReactiveProperty<PlayerComponent> _player = new ReactiveProperty<PlayerComponent>();
 
@@ -38,6 +38,17 @@ namespace Systems.Enemy
                     .AddTo(component)
                 )
                 .AddTo(component);
+        }
+
+        public override void Register(StartDogComponent component)
+        {
+            RunTowardsDoor(component, component.DoorPosition);
+        }
+
+        private void RunTowardsDoor(StartDogComponent dog, Vector3 doorPosition)
+        {
+            var directionToDoor = dog.transform.position.DirectionTo(doorPosition);
+            dog.GetComponent<MovementComponent>().Direction.Value = directionToDoor.XZ();
         }
 
         private void FollowPlayer(FollowPlayerComponent enemy)

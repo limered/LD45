@@ -687,12 +687,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5150436853149205769, guid: b26b003e0ccd47142978758bf2d0d36f,
+    - target: {fileID: 2169020478789158966, guid: b26b003e0ccd47142978758bf2d0d36f,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 7007b7b06a1bd634c8296d36386b0f7d, type: 2}
-    - target: {fileID: 2169020478789158966, guid: b26b003e0ccd47142978758bf2d0d36f,
+    - target: {fileID: 5150436853149205769, guid: b26b003e0ccd47142978758bf2d0d36f,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -1479,6 +1479,11 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 7007b7b06a1bd634c8296d36386b0f7d, type: 2}
+    - target: {fileID: 8224920403313220618, guid: cfe99d3579defa945a713d48a3c3dca2,
+        type: 3}
+      propertyPath: DoorPosition.z
+      value: 4.14
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cfe99d3579defa945a713d48a3c3dca2, type: 3}
 --- !u!4 &5150436853232157826 stripped

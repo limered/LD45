@@ -6,5 +6,6 @@ namespace Systems.Dog
     public class StartDogComponent : GameComponent
     {
         public GameObject Originator { set; get; }
+        public Vector3 DoorPosition;
     }
 }

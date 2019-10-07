@@ -92,6 +92,7 @@ GameObject:
   - component: {fileID: 6011959023792947292}
   - component: {fileID: 1727671019086799296}
   - component: {fileID: 7725610042207823877}
+  - component: {fileID: -6964406656713217621}
   m_Layer: 0
   m_Name: StartDog
   m_TagString: Untagged
@@ -156,9 +157,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df8d9ba2a31c4cff9534124ec21a1a00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Speed: 0
-  Friction: 0
-  MaxSpeed: 0
+  Speed: 30
+  Friction: 4
+  MaxSpeed: 6
   Collider: {fileID: 0}
   Direction:
     value: {x: 0, y: 0}
+--- !u!114 &-6964406656713217621
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6178140279436411395}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 726a2a812c905334e8e9e0fa817a9fbe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DoorPosition: {x: 0, y: 0, z: 0}
