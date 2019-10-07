@@ -47,7 +47,7 @@ namespace Systems.Movement
             var positionChange = component.Velocity * Time.fixedDeltaTime;
             component.transform.position = new Vector3(
                 component.transform.position.x + positionChange.x,
-                component.transform.position.y,
+                0.1f,
                 component.transform.position.z + positionChange.y);
         }
 
