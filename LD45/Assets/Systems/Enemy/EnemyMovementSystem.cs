@@ -1,4 +1,5 @@
 ﻿using SystemBase;
+using Systems.Dog;
 using Systems.Enemy.Skeletor;
 using Systems.Movement;
 using Systems.Player;
@@ -13,11 +14,22 @@ using Utils.Unity;
 namespace Systems.Enemy
 {
     [GameSystem(typeof(PlayerSystem), typeof(MovementSystem), typeof(RoomSystem))]
-    public class EnemyMovementSystem:GameSystem<PlayerComponent, FollowPlayerComponent, IradicMovementComponent>
+    public class EnemyMovementSystem:GameSystem<PlayerComponent, FollowPlayerComponent, IradicMovementComponent, EndDogComponent>
     {
         private readonly ReactiveProperty<PlayerComponent> _player = new ReactiveProperty<PlayerComponent>();
 
         public override void Register(FollowPlayerComponent component)
+        {
+            _player.WhereNotNull()
+                .Subscribe(_ => component.FixedUpdateAsObservable()
+                    .Select(a => component)
+                    .Subscribe(FollowPlayer)
+                    .AddTo(component)
+                )
+                .AddTo(component);
+        }
+
+        public override void Register(EndDogComponent component)
         {
             _player.WhereNotNull()
                 .Subscribe(_ => component.FixedUpdateAsObservable()
@@ -38,6 +50,19 @@ namespace Systems.Enemy
             else
             {
                 enemy.GetComponent<MovementComponent>().Direction.Value = Vector2.zero;
+            }
+        }
+
+        private void FollowPlayer(EndDogComponent dog)
+        {
+            if (dog.GetComponent<RoomEnemyComponent>().TheRoom.PlayerInside)
+            {
+                var directionToPlayer = dog.transform.position.DirectionTo(_player.Value.transform.position);
+                dog.GetComponent<MovementComponent>().Direction.Value = directionToPlayer.XZ();
+            }
+            else
+            {
+                dog.GetComponent<MovementComponent>().Direction.Value = Vector2.zero;
             }
         }
 

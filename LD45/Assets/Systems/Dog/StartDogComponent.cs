@@ -1,11 +1,10 @@
 ﻿using SystemBase;
 using UnityEngine;
 
-namespace Systems.Nomes
+namespace Systems.Dog
 {
-    public class KeyComponent : GameComponent
+    public class StartDogComponent : GameComponent
     {
         public GameObject Originator { set; get; }
-        public float Lifetime;
     }
 }

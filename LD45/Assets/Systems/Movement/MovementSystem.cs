@@ -1,7 +1,9 @@
-﻿using SystemBase;
+﻿using GameState.States;
+using SystemBase;
 using UniRx;
 using UniRx.Triggers;
 using UnityEngine;
+using Utils;
 
 namespace Systems.Movement
 {
@@ -65,12 +67,15 @@ namespace Systems.Movement
 
         private void CalculateMovement(MovementComponent component)
         {
-            StopRigidbodyMovement(component);
-            ApplyDirection(component);
-            ApplyFriction(component);
-            Animate(component);
-            ApplyAnimationToObject(component);
-            if (component.Collider) FixCollider(component);
+            //if (IoC.Game.GameStateContext.CurrentState.GetType() is Running) //TODO Helen
+            //{
+                StopRigidbodyMovement(component);
+                ApplyDirection(component);
+                ApplyFriction(component);
+                Animate(component);
+                ApplyAnimationToObject(component);
+                if (component.Collider) FixCollider(component);
+            //}
         }
 
         private static void StopRigidbodyMovement(MovementComponent component)
