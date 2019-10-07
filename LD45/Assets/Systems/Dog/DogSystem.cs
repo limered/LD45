@@ -1,6 +1,7 @@
 ﻿using GameState.States;
 using System.Linq;
 using SystemBase;
+using Systems.Dog.Events;
 using Systems.Player;
 using UniRx;
 using UniRx.Triggers;
@@ -35,6 +36,8 @@ namespace Systems.Dog
 
         private void OnDogExitsDoor(Collider coll)
         {
+            MessageBroker.Default.Publish(new EvtDogExitsDoor{ });
+
             IoC.Game.GameStateContext.GoToState(new Running());
             GameObject.Destroy(coll, 1);
         }
