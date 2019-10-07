@@ -65,7 +65,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsMoving: 0
-  DeadPlayerSprite: {fileID: 21300000, guid: 51037b5da30c1ca45bf2b7476e7183da, type: 3}
 --- !u!114 &7367560247458776116
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -79,8 +78,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Speed: 40
-  Friction: 4
-  MaxSpeed: 10
+  Friction: 8
+  MaxSpeed: 7
   Collider: {fileID: 0}
   Direction:
     value: {x: 0, y: 0}
