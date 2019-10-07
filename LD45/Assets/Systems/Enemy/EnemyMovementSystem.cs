@@ -52,7 +52,7 @@ namespace Systems.Enemy
 
         private void FollowPlayer(FollowPlayerComponent enemy)
         {
-            if (enemy.GetComponent<RoomEnemyComponent>().TheRoom.PlayerInside && _player.Value.IsMoving)
+            if (enemy.GetComponent<RoomEnemyComponent>().TheRoom.PlayerInside && _player.Value.IsMoving.Value)
             {
                 var directionToPlayer = enemy.transform.position.DirectionTo(_player.Value.transform.position);
                 enemy.GetComponent<MovementComponent>().Direction.Value = directionToPlayer.XZ();
@@ -94,7 +94,7 @@ namespace Systems.Enemy
 
         private void MoveIradic(IradicMovementComponent enemy)
         {
-            if (enemy.GetComponent<RoomEnemyComponent>().TheRoom.PlayerInside && _player.Value.IsMoving)
+            if (enemy.GetComponent<RoomEnemyComponent>().TheRoom.PlayerInside && _player.Value.IsMoving.Value)
             {
                 var newRandom = new Vector3().RandomVector(new Vector3(-1,-1,-1), new Vector3(1, 1, 1));
                 var dir = (enemy.LastrandomVector + newRandom).normalized;
