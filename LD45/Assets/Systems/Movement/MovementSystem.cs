@@ -1,5 +1,6 @@
 ﻿using GameState.States;
 using SystemBase;
+using Systems.Dog;
 using UniRx;
 using UniRx.Triggers;
 using UnityEngine;
@@ -15,6 +16,12 @@ namespace Systems.Movement
             component.FixedUpdateAsObservable()
                 .Select(_ => component)
                 .Subscribe(CalculateMovement)
+                .AddTo(component);
+
+            component.FixedUpdateAsObservable()
+                .Select(_ => component)
+                .Where(c => c.GetComponent<StartDogComponent>())
+                .Subscribe(CalculateDogMovement)
                 .AddTo(component);
 
             ResetRigidbody(component);
@@ -67,15 +74,25 @@ namespace Systems.Movement
 
         private void CalculateMovement(MovementComponent component)
         {
-            //if (IoC.Game.GameStateContext.CurrentState.GetType() is Running) //TODO Helen
-            //{
+            if (IoC.Game.GameStateContext.CurrentState.Value is Running)
+            {
                 StopRigidbodyMovement(component);
                 ApplyDirection(component);
                 ApplyFriction(component);
                 Animate(component);
                 ApplyAnimationToObject(component);
                 if (component.Collider) FixCollider(component);
-            //}
+            }
+        }
+
+        private void CalculateDogMovement(MovementComponent component)
+        {
+            StopRigidbodyMovement(component);
+            ApplyDirection(component);
+            ApplyFriction(component);
+            Animate(component);
+            ApplyAnimationToObject(component);
+            if (component.Collider) FixCollider(component);
         }
 
         private static void StopRigidbodyMovement(MovementComponent component)

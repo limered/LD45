@@ -1,8 +1,6 @@
 ﻿using System;
 using SystemBase;
 using Systems.Attac.Actions;
-using Systems.Dog.Actions;
-using Systems.GameState.Messages;
 using Systems.Health.Events;
 using Systems.InputHandling.Events;
 using Systems.Movement;
@@ -39,14 +37,6 @@ namespace Systems.Player
                 .Where(msg => msg.ObjectToKill.GetComponent<PlayerComponent>())
                 .Subscribe(PlayerDies)
                 .AddTo(component);
-
-            MessageBroker.Default.Receive<ActDogHitsPlayer>()
-                .Subscribe(EndGame);
-        }
-
-        private void EndGame(ActDogHitsPlayer obj)
-        {
-            Debug.Log("Game should end");
         }
 
         private void PlayerDies(HealthEvtReachedZero obj)

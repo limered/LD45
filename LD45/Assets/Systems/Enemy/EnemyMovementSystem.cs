@@ -1,6 +1,5 @@
 ﻿using SystemBase;
 using Systems.Dog;
-using Systems.Enemy.Skeletor;
 using Systems.Movement;
 using Systems.Player;
 using Systems.Room;

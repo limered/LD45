@@ -1,16 +1,11 @@
-﻿using System;
+﻿using GameState.States;
 using System.Linq;
 using SystemBase;
-using Systems.Dog.Actions;
-using Systems.Health;
-using Systems.Health.Actions;
-using Systems.InteractableObjects;
-using Systems.InteractableObjects.Events;
 using Systems.Player;
 using UniRx;
 using UniRx.Triggers;
 using UnityEngine;
-using Object = UnityEngine.Object;
+using Utils;
 
 namespace Systems.Dog
 {
@@ -27,13 +22,21 @@ namespace Systems.Dog
 
         public override void Register(StartDogComponent component)
         {
+            component.OnTriggerEnterAsObservable()
+                .Where(collider => collider.GetComponent<ExitDoorComponent>())
+                .Subscribe(OnDogExitsDoor)
+                .AddTo(component);
         }
 
         private void OnDogEndsGame(Collider coll)
         {
-            MessageBroker.Default.Publish(new ActDogHitsPlayer
-            {
-            });
+            IoC.Game.GameStateContext.GoToState(new GameOver());
+        }
+
+        private void OnDogExitsDoor(Collider coll)
+        {
+            IoC.Game.GameStateContext.GoToState(new Running());
+            GameObject.Destroy(coll, 1);
         }
     }
 }
