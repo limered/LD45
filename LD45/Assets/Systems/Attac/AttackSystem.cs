@@ -1,4 +1,5 @@
-﻿using System;
+﻿using StrongSystems.Audio;
+using System;
 using System.Linq;
 using SystemBase;
 using Systems.Attac.Actions;
@@ -27,6 +28,7 @@ namespace Systems.Attac
 
         private void SpawnHitObject(ActAttackSpawn attcSpwMsg)
         {
+            PlaySound(attcSpwMsg);
             GameObject attackObject;
             switch (attcSpwMsg.Word)
             {
@@ -79,6 +81,13 @@ namespace Systems.Attac
                 default:
                     throw new ArgumentOutOfRangeException();
             }
+        }
+
+        private void PlaySound(ActAttackSpawn attcSpwMsg)
+        {
+            var soundName = attcSpwMsg.Originator.tag == "Player" ? "Lizzi" : "Enemy";
+            var word = Enum.GetName(typeof(InputWordType), attcSpwMsg.Word);
+            $"{soundName}_{word}".Play();
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using StrongSystems.Audio;
+using System;
 using SystemBase;
 using Systems.Health;
 using Systems.Health.Actions;
@@ -38,6 +39,8 @@ namespace Systems.Nomes
 
         private static void Hit(Collider coll)
         {
+            "Hit".Play();
+
             HealthComponent hlth;
             if (!coll.TryGetComponent(out hlth)) return;
 

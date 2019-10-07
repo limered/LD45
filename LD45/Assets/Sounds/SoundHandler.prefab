@@ -1,0 +1,182 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &8918297832724560860
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8918297832724560851}
+  - component: {fileID: 8918297832724560850}
+  - component: {fileID: 8918297832724560861}
+  m_Layer: 0
+  m_Name: SoundHandler
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8918297832724560851
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8918297832724560860}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8918297832724560850
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8918297832724560860}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff42f5a139174fa4ab7ebb6c646de54f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &8918297832724560861
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8918297832724560860}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc230bb4099941f49832cf1ca1a0ee31, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MaxPitchChange: 0
+  Sounds:
+  - Name: Enemy_Fire
+    Files:
+    - {fileID: 8300000, guid: c4a45029c5a8ce54b8e7278dd8df9c00, type: 3}
+    - {fileID: 8300000, guid: 509d48aa869faaa4487b4e1a8b4c593a, type: 3}
+    - {fileID: 8300000, guid: 8356f7790a8cb024f987b91568ccbfe6, type: 3}
+    Volume: 1
+  - Name: Enemy_Hit
+    Files:
+    - {fileID: 8300000, guid: e919f0414ca1c464c921404985fbe603, type: 3}
+    - {fileID: 8300000, guid: 44c09f28ce6dfd54796a808a3ec8c08a, type: 3}
+    - {fileID: 8300000, guid: 27320645fd18c3740bf93b2a5bfe1820, type: 3}
+    - {fileID: 8300000, guid: 82ed9bd9e966c3f459eb68cb094dc76a, type: 3}
+    - {fileID: 8300000, guid: 362565b5639aefe43bf20f1c24f928c7, type: 3}
+    - {fileID: 8300000, guid: 41a56244e12b6ef4e9be29dd669a623c, type: 3}
+    Volume: 1
+  - Name: Enemy_Megahit
+    Files:
+    - {fileID: 8300000, guid: 933b256a9e7166d47b7a422faadbeadf, type: 3}
+    - {fileID: 8300000, guid: 2a9936eadb9ff01499ed91d1b1b074c3, type: 3}
+    - {fileID: 8300000, guid: 76c1cc1be9d876f47ab52b88631f2964, type: 3}
+    - {fileID: 8300000, guid: dfd5bb95cb6655a4eb61053cccc6f01e, type: 3}
+    Volume: 1
+  - Name: Enemy_Ouch
+    Files:
+    - {fileID: 8300000, guid: e309e3f38a7eb684a841ae65acb3a743, type: 3}
+    - {fileID: 8300000, guid: cd55cb7a0c972b94fb7b3d43f0e51653, type: 3}
+    - {fileID: 8300000, guid: fd1b25de9da30064d9a73a6c235c4405, type: 3}
+    - {fileID: 8300000, guid: e2c5427fc7fa4724a892396750ceda2b, type: 3}
+    - {fileID: 8300000, guid: 3f35a0a8b24152444ae49f7db08afbbd, type: 3}
+    - {fileID: 8300000, guid: b0c9839827bcda14896ae231b1dd3eae, type: 3}
+    - {fileID: 8300000, guid: 6467bf872132fb6489bae6adf6401fe5, type: 3}
+    - {fileID: 8300000, guid: b46b169e0532ba24598f32dec1740ab4, type: 3}
+    - {fileID: 8300000, guid: 07c2387510823054abd722240445c66c, type: 3}
+    - {fileID: 8300000, guid: 0388f8f1f7690e8448de9623023da823, type: 3}
+    Volume: 0.5
+  - Name: Lizzi_Fire
+    Files:
+    - {fileID: 8300000, guid: 585f0a8c4f397064188550fec9a14a5e, type: 3}
+    - {fileID: 8300000, guid: f976cc1cb432c484ebfa187a9eb00503, type: 3}
+    - {fileID: 8300000, guid: ab7c03e9caba89642a10dc6771e9dc38, type: 3}
+    - {fileID: 8300000, guid: 25d96dd522034e646bc295079dd67fcc, type: 3}
+    - {fileID: 8300000, guid: e2eb71c15e21daf46ba2f33c7a3b9a72, type: 3}
+    - {fileID: 8300000, guid: a3091d92bb09f5a4686f6b16393ac222, type: 3}
+    - {fileID: 8300000, guid: 6f1c3cb3f61ddf445a519b0f44c77a75, type: 3}
+    - {fileID: 8300000, guid: e30c6f08b564f464f95c95f9b287d71d, type: 3}
+    - {fileID: 8300000, guid: d7348a8fa547ab940a65efd17ff90cfe, type: 3}
+    - {fileID: 8300000, guid: a08b4d07c44534f4fbd32ae1349e17e0, type: 3}
+    Volume: 1
+  - Name: Lizzi_Hit
+    Files:
+    - {fileID: 8300000, guid: 2f02daf6cc29b7c4c8938e68855b80df, type: 3}
+    - {fileID: 8300000, guid: 3dd3545e2f47dbd4b96491f483fd49c1, type: 3}
+    - {fileID: 8300000, guid: 16da4651571e4d14ca13862d97bef448, type: 3}
+    - {fileID: 8300000, guid: ab4e57d217f09b748b6aed332071ba92, type: 3}
+    - {fileID: 8300000, guid: 6cbb8de9399934b42967f37ba4fd75c1, type: 3}
+    - {fileID: 8300000, guid: 15c80cacd1017b64ea9d744aee5cd48b, type: 3}
+    Volume: 1
+  - Name: Lizzi_Megahit
+    Files:
+    - {fileID: 8300000, guid: 624fd7a2870e74a47992d083a9aff52b, type: 3}
+    - {fileID: 8300000, guid: 7275e10264c5f92469ec4d6283e8347d, type: 3}
+    - {fileID: 8300000, guid: f486235db7166ab43b808f2571cc66e8, type: 3}
+    - {fileID: 8300000, guid: 659e8282cb718c6499870d3443c5a4fc, type: 3}
+    - {fileID: 8300000, guid: c1f49a357c7b9b443b411ce5a6bfa33d, type: 3}
+    - {fileID: 8300000, guid: 9424036095c793a4a92436372a59dfbf, type: 3}
+    - {fileID: 8300000, guid: 3f9ebee9ddebad3408994cf489ba76c7, type: 3}
+    - {fileID: 8300000, guid: 651872cd2c32e814a8de149bed4d193d, type: 3}
+    Volume: 1
+  - Name: Lizzi_Nothing_Happy
+    Files:
+    - {fileID: 8300000, guid: d62fb81a7daf9064ca4a1558e80ecdea, type: 3}
+    - {fileID: 8300000, guid: c5ffadd1d965a644cb751dc7f4fb79a3, type: 3}
+    - {fileID: 8300000, guid: 8292ae0dd8e813c449f0a6d8730f55c3, type: 3}
+    - {fileID: 8300000, guid: fa324ce23818c4b49bbb0ae34e2b085c, type: 3}
+    Volume: 1
+  - Name: Lizzi_Nothing_Question
+    Files:
+    - {fileID: 8300000, guid: c6ae16de1ff43df448c5345bfb2a5700, type: 3}
+    - {fileID: 8300000, guid: c24f94a0342a11e4cb41282206891d4b, type: 3}
+    Volume: 1
+  - Name: Lizzi_Ouch
+    Files:
+    - {fileID: 8300000, guid: 982dd1bc2e3583f4a900abae1df60c47, type: 3}
+    - {fileID: 8300000, guid: 323582b51957b8946bcf30c4a781dea3, type: 3}
+    - {fileID: 8300000, guid: 46c3d21fa40f8824e99e5ab8ada3b90a, type: 3}
+    - {fileID: 8300000, guid: fee74e069275c4c4e9bc0f3b09d6200c, type: 3}
+    - {fileID: 8300000, guid: 1b2d7a4c5e57c0f47a7d17b85ef25d9c, type: 3}
+    - {fileID: 8300000, guid: 18313f5dea41772459dfc33f41d3ea34, type: 3}
+    - {fileID: 8300000, guid: 25f2473574d30e14b835619ac4ca047b, type: 3}
+    - {fileID: 8300000, guid: 7dd4998923bb27a448ad37a47907b6f9, type: 3}
+    - {fileID: 8300000, guid: 2edae326e55c7244e8874c24884902ce, type: 3}
+    - {fileID: 8300000, guid: 36a343d8e8bca644d9aa2cedea119d7f, type: 3}
+    - {fileID: 8300000, guid: 1d44fbea01369c7409a265e9baa569fd, type: 3}
+    - {fileID: 8300000, guid: 36a09d5fe0804eb439fc17871c565a39, type: 3}
+    - {fileID: 8300000, guid: 17c715d4a91a4fd42b2f5d7a91c1d3f3, type: 3}
+    - {fileID: 8300000, guid: 117035cdbf5062440b142929771d2241, type: 3}
+    - {fileID: 8300000, guid: 6587fa09bfd69f842b3de678178dcaf4, type: 3}
+    - {fileID: 8300000, guid: 9918e957744bf094d8d4a5fbfdf18248, type: 3}
+    Volume: 0.5
+  - Name: Door_Opened
+    Files:
+    - {fileID: 8300000, guid: eb3cbd9f47405d74b9d0065d3dc4166c, type: 3}
+    - {fileID: 8300000, guid: bc9e454b778e74046a46f7045df951ce, type: 3}
+    - {fileID: 8300000, guid: 21cb3c943ea36b246a26672b581fe676, type: 3}
+    Volume: 1
+  - Name: Fire
+    Files:
+    - {fileID: 8300000, guid: 319678bc5465c6e4fb1c906f6065bb3b, type: 3}
+    - {fileID: 8300000, guid: 290620918102df14ca1bffee48ae6668, type: 3}
+    Volume: 1
+  - Name: Lizzi_Key
+    Files:
+    - {fileID: 8300000, guid: 0c8734852cc8d234d956c00d989ae529, type: 3}
+    - {fileID: 8300000, guid: bbcf459cf6ce1db4cab23acb7fe6b1d0, type: 3}
+    - {fileID: 8300000, guid: 06480b67192ff634f9835af191ec827c, type: 3}
+    - {fileID: 8300000, guid: 27ad717dc79f71342b370bcc29fb61ec, type: 3}
+    - {fileID: 8300000, guid: c6bd7856bf5d5d8408f6e994da4643f1, type: 3}
+    Volume: 1
+  - Name: Hit
+    Files:
+    - {fileID: 8300000, guid: 7aa8fdef2d1a3c3468346fd769f04172, type: 3}
+    Volume: 0.05
