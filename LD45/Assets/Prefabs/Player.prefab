@@ -65,6 +65,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsMoving: 0
+  DeadPlayerSprite: {fileID: 21300000, guid: 51037b5da30c1ca45bf2b7476e7183da, type: 3}
 --- !u!114 &7367560247458776116
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -411,11 +412,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7367560247458776123}
     m_Modifications:
-    - target: {fileID: 3670729781908036820, guid: 9dbf842954ab9c84b860aa554c78db13,
-        type: 3}
-      propertyPath: m_Name
-      value: Shadow_Lizzy
-      objectReference: {fileID: 0}
     - target: {fileID: 4720898573110902630, guid: 9dbf842954ab9c84b860aa554c78db13,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -470,6 +466,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3670729781908036820, guid: 9dbf842954ab9c84b860aa554c78db13,
+        type: 3}
+      propertyPath: m_Name
+      value: Shadow_Lizzy
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9dbf842954ab9c84b860aa554c78db13, type: 3}

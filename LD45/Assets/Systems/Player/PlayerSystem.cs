@@ -7,6 +7,7 @@ using Systems.Movement;
 using UniRx;
 using UniRx.Triggers;
 using UnityEngine;
+using UnityEngine.UI;
 using Utils.Unity;
 using Object = UnityEngine.Object;
 
@@ -35,17 +36,22 @@ namespace Systems.Player
 
             MessageBroker.Default.Receive<HealthEvtReachedZero>()
                 .Where(msg => msg.ObjectToKill.GetComponent<PlayerComponent>())
-                .Subscribe(PlayerDies)
+                .Subscribe(obj => PlayerDies(obj, component))
                 .AddTo(component);
         }
 
-        private void PlayerDies(HealthEvtReachedZero obj)
+        private void PlayerDies(HealthEvtReachedZero obj, PlayerComponent component)
         {
-            Object.Destroy(obj.ObjectToKill);
-            _currentPlayer = null;
+            _currentPlayer.GetComponentInChildren<SpriteRenderer>().sprite = component.DeadPlayerSprite;
+
+            
 
             Observable.Timer(TimeSpan.FromMilliseconds(1500))
-                .Subscribe(l => MessageBroker.Default.Publish(new ActPlayerRespawn()));
+                .Subscribe(l => {
+                    Object.Destroy(obj.ObjectToKill);
+                    _currentPlayer = null;
+                    MessageBroker.Default.Publish(new ActPlayerRespawn());
+                });
         }
 
         public override void Register(MovementComponent component)
