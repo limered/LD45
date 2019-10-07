@@ -42,7 +42,7 @@ namespace Assets.Systems.Enemy
                 {
                     component.BulbToShow.SetActive(false);
                     enemyComponent.CanFire = true;
-                });
+                }).AddTo(enemyComponent);
         }
     }
 }

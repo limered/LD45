@@ -12,6 +12,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Standing_MegaHitter
       objectReference: {fileID: 0}
+    - target: {fileID: 747285257, guid: 9837e09f893c58146aa6bd75d37cb142, type: 3}
+      propertyPath: m_Radius
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 5151249395035708626, guid: 9837e09f893c58146aa6bd75d37cb142,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -77,6 +81,11 @@ PrefabInstance:
         type: 3}
       propertyPath: WordToDrop
       value: megahit
+      objectReference: {fileID: 0}
+    - target: {fileID: 3904130860777137195, guid: 9837e09f893c58146aa6bd75d37cb142,
+        type: 3}
+      propertyPath: TimeInMs
+      value: 1000
       objectReference: {fileID: 0}
     - target: {fileID: 9147604873626521817, guid: 9837e09f893c58146aa6bd75d37cb142,
         type: 3}

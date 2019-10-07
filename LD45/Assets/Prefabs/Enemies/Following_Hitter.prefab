@@ -79,6 +79,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5151249395035708631, guid: 9837e09f893c58146aa6bd75d37cb142,
+        type: 3}
+      propertyPath: Friction
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 17776649402583569, guid: 9837e09f893c58146aa6bd75d37cb142,
         type: 3}
       propertyPath: WordToDrop
