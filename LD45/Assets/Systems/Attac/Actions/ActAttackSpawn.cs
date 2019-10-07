@@ -9,5 +9,6 @@ namespace Systems.Attac.Actions
         public Vector2 Position { get; set; }
         public Vector2 Direction { get; set; }
         public GameObject Originator { get; set; }
+        public float Duration { get; set; }
     }
 }

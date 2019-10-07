@@ -9,16 +9,6 @@ namespace Systems.Enemy.Skeletor
     [RequireComponent(typeof(MovementComponent))]
     public class Sceletor : GameComponent
     {
-        public GameObject PlayerSenseTrigger;
-        public float WindUpTimeInMs;
-        public float AttackTime;
-        public bool CanFire = true;
-        public InputWordType AtackWord;
         public string WordToDrop;
-        public GameObject WindUpBulb;
-        public GameObject AttackBulb;
-
-        public BoolReactiveProperty IsWindingUp = new BoolReactiveProperty(false);
-        public BoolReactiveProperty IsAttacking = new BoolReactiveProperty(false);
     }
 }
