@@ -130,9 +130,11 @@ namespace StrongSystems.Audio
                 var soundFile = component.Sounds.FirstOrDefault(file => file.Name == name);
                 if (soundFile != null)
                 {
+                    var randomSoundFile = soundFile.Files[UnityEngine.Random.Range(0, soundFile.Files.Length)];
+
                     var source = component.gameObject.AddComponent<AudioSource>();
                     source.pitch = 1 + (UnityEngine.Random.value - 0.5f) * 2f * component.MaxPitchChange;
-                    source.PlayOneShot(soundFile.File, soundFile.Volume * _sfxVolume.Value);
+                    source.PlayOneShot(randomSoundFile, soundFile.Volume * _sfxVolume.Value);
                     RemoveSourceAfterStopped(source);
                 }
                 else

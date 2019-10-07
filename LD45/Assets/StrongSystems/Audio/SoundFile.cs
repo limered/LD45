@@ -7,7 +7,7 @@ namespace StrongSystems.Audio
     public class SoundFile
     {
         public string Name;
-        public AudioClip File;
+        public AudioClip[] Files;
 
         [Range(0f, 1f)]
         public float Volume;

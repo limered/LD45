@@ -16,7 +16,15 @@ namespace SystemBase
         protected void Start()
         {
             RegisterToGame();
+
+            OverwriteStart();
         }
+
+        protected virtual void OverwriteStart()
+        {
+
+        }
+
     }
 
     public class SemanticGameComponent<TGameComponent> : GameComponent where TGameComponent : IGameComponent
