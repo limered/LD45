@@ -43,13 +43,14 @@ namespace Systems.Player
         private void PlayerDies(HealthEvtReachedZero obj, PlayerComponent component)
         {
             component.GetComponentInChildren<Animator>().Play("Dead");
+            _currentPlayer = null;
 
             Observable.Timer(TimeSpan.FromMilliseconds(1500))
                 .Subscribe(l => {
+                    
                     Object.Destroy(obj.ObjectToKill);
-                    _currentPlayer = null;
                     MessageBroker.Default.Publish(new ActPlayerRespawn());
-                });
+                }).AddTo(component);
         }
 
         public override void Register(MovementComponent component)
