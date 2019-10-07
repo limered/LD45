@@ -2,7 +2,7 @@
 
 namespace Shaders.ImageProcessing
 {
-    public class CRTEffect : MonoBehaviour
+    public class GrainEffect : MonoBehaviour
     {
         public Material material;
 
