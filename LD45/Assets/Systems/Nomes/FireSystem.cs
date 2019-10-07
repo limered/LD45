@@ -7,6 +7,7 @@ using Systems.InteractableObjects.Events;
 using UniRx;
 using UniRx.Triggers;
 using UnityEngine;
+using Utils.Math;
 using Object = UnityEngine.Object;
 
 namespace Systems.Nomes
@@ -29,6 +30,14 @@ namespace Systems.Nomes
             Observable.Timer(TimeSpan.FromMilliseconds(component.Lifetime))
                 .Subscribe(_ => Object.Destroy(component.gameObject))
                 .AddTo(component);
+
+            for (var i = 0; i < component.FireCount; i++)
+            {
+                var d = component.MaxFireDistance;
+                var firePosition = new Vector3().RandomVector(new Vector3(-d, -d, -d), new Vector3(d, d, d));
+                var fire = Object.Instantiate(component.FirePrefab, component.transform );
+                fire.transform.localPosition = firePosition;
+            }
         }
 
         private static void Fire(Collider coll)

@@ -7,5 +7,8 @@ namespace Systems.Nomes
     {
         public GameObject Originator { set; get; }
         public float Lifetime;
+        public GameObject FirePrefab;
+        public int FireCount;
+        public float MaxFireDistance;
     }
 }

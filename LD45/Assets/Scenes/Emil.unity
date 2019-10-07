@@ -314,6 +314,11 @@ PrefabInstance:
       propertyPath: TheRoom
       value: 
       objectReference: {fileID: 1439438532}
+    - target: {fileID: 5151249395035708628, guid: 9837e09f893c58146aa6bd75d37cb142,
+        type: 3}
+      propertyPath: WordToDrop
+      value: fire
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9837e09f893c58146aa6bd75d37cb142, type: 3}
 --- !u!4 &96631208 stripped
@@ -878,6 +883,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5151249395035708628, guid: d12343145adcf254ebaea099f3cc2b7a,
+        type: 3}
+      propertyPath: WordToDrop
+      value: fire
       objectReference: {fileID: 0}
     - target: {fileID: 1451442279777307321, guid: d12343145adcf254ebaea099f3cc2b7a,
         type: 3}

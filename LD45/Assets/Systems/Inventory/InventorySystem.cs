@@ -18,18 +18,13 @@ namespace Systems.Inventory
 
         private void AddKeyToCollectedKeys(InventoryComponent component, char key)
         {
-            if (component.CollectedKeys.Value.Contains(key))
-            {
+            if (component.CollectedKeys.Value.Contains(key)) return;
 
-            }
-            else
+            MessageBroker.Default.Publish(new EvtNewKeyCollected
             {
-                MessageBroker.Default.Publish(new EvtNewKeyCollected
-                {
-                    NewKey = key
-                });
-                component.CollectedKeys.Value.Add(key);
-            }
+                NewKey = key
+            });
+            component.CollectedKeys.Value.Add(key);
         }
     }
 }
