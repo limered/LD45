@@ -11,13 +11,13 @@ public class SoundHandler : MonoBehaviour
     {
         MessageBroker.Default.Receive<EvtDogExitsDoor>().First().Subscribe(_ => "Lizzi_Nothing_Question".Play()).AddTo(this);
         MessageBroker.Default.Receive<EvtDogEndsGame>().First().Subscribe(_ => "Lizzi_Nothing_Happy".Play()).AddTo(this);
-        MessageBroker.Default.Receive<HealthActSubtract>().Subscribe(_ => PlayOuchSound(_)).AddTo(this);
+        MessageBroker.Default.Receive<HealthActSubtract>().Subscribe(PlayOuchSound).AddTo(this);
         MessageBroker.Default.Receive<EvtKillDoor>().Subscribe(_ => "Door_Opened".Play()).AddTo(this);
     }
 
     private void PlayOuchSound(HealthActSubtract healthactSubtract)
     {
-        var soundName = healthactSubtract.ComponentToChange.gameObject.tag == "Player" ? "Lizzi" : "Enemy";
+        var soundName = healthactSubtract.ComponentToChange.gameObject.CompareTag("Player") ? "Lizzi" : "Enemy";
         $"{soundName}_Ouch".Play();
     }
 }

@@ -45,17 +45,20 @@ namespace Systems.Movement
         private static void ApplyAnimationToObject(MovementComponent component)
         {
             var positionChange = component.Velocity * Time.fixedDeltaTime;
-            component.transform.position = new Vector3(
-                component.transform.position.x + positionChange.x,
+            var transform = component.transform;
+            var position = transform.position;
+            position = new Vector3(
+                position.x + positionChange.x,
                 0.1f,
-                component.transform.position.z + positionChange.y);
+                position.z + positionChange.y);
+            transform.position = position;
         }
 
         private static void Animate(MovementComponent component)
         {
             var futureVel = component.Velocity + component.Acceleration * Time.fixedDeltaTime;
             var speed = component.Velocity.magnitude;
-            if (speed < component.MaxSpeed)
+            if (speed < component.maxSpeed)
             {
                 component.Velocity = futureVel;
             }
@@ -63,26 +66,25 @@ namespace Systems.Movement
 
         private static void ApplyFriction(MovementComponent component)
         {
-            var backFriction = component.Velocity * -component.Friction;
-            component.Velocity = component.Velocity + backFriction * Time.fixedDeltaTime;
+            var backFriction = component.Velocity * -component.friction;
+            component.Velocity += backFriction * Time.fixedDeltaTime;
         }
 
         private static void ApplyDirection(MovementComponent component)
         {
-            component.Acceleration = component.Direction.Value * component.Speed;
+            component.Acceleration = component.direction.Value * component.speed;
         }
 
         private void CalculateMovement(MovementComponent component)
         {
-            if (IoC.Game.GameStateContext.CurrentState.Value is Running)
-            {
-                StopRigidbodyMovement(component);
-                ApplyDirection(component);
-                ApplyFriction(component);
-                Animate(component);
-                ApplyAnimationToObject(component);
-                if (component.Collider) FixCollider(component);
-            }
+            if (!(IoC.Game.GameStateContext.CurrentState.Value is Running)) return;
+
+            StopRigidbodyMovement(component);
+            ApplyDirection(component);
+            ApplyFriction(component);
+            Animate(component);
+            ApplyAnimationToObject(component);
+            if (component.Collider) FixCollider(component);
         }
 
         private void CalculateDogMovement(MovementComponent component)

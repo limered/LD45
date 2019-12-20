@@ -28,7 +28,7 @@ namespace Systems.Player
             }
             _currentPlayer = component.gameObject;
 
-            component.GetComponent<MovementComponent>().Direction
+            component.GetComponent<MovementComponent>().direction
                 .Subscribe(dir => component.IsMoving.Value = dir.magnitude > 0);
 
             component.IsMoving.Subscribe(obj => StartMovingState(component)).AddTo(component);
@@ -121,7 +121,7 @@ namespace Systems.Player
                 movementDirection.x += 1;
             }
 
-            comp.Direction.Value = movementDirection;
+            comp.direction.Value = movementDirection;
         }
 
         private void Attack(PlayerComponent player, EvtInputWordCompleted word)

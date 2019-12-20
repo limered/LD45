@@ -47,7 +47,7 @@ namespace Systems.Enemy
         private void RunTowardsDoor(StartDogComponent dog, Vector3 doorPosition)
         {
             var directionToDoor = dog.transform.position.DirectionTo(doorPosition);
-            dog.GetComponent<MovementComponent>().Direction.Value = directionToDoor.XZ();
+            dog.GetComponent<MovementComponent>().direction.Value = directionToDoor.XZ();
         }
 
         private void FollowPlayer(FollowPlayerComponent enemy)
@@ -55,11 +55,11 @@ namespace Systems.Enemy
             if (enemy.GetComponent<RoomEnemyComponent>().TheRoom.PlayerInside && _player.Value.IsMoving.Value)
             {
                 var directionToPlayer = enemy.transform.position.DirectionTo(_player.Value.transform.position);
-                enemy.GetComponent<MovementComponent>().Direction.Value = directionToPlayer.XZ();
+                enemy.GetComponent<MovementComponent>().direction.Value = directionToPlayer.XZ();
             }
             else
             {
-                enemy.GetComponent<MovementComponent>().Direction.Value = Vector2.zero;
+                enemy.GetComponent<MovementComponent>().direction.Value = Vector2.zero;
             }
         }
 
@@ -68,11 +68,11 @@ namespace Systems.Enemy
             if (dog.GetComponent<RoomEnemyComponent>().TheRoom.PlayerInside)
             {
                 var directionToPlayer = dog.transform.position.DirectionTo(_player.Value.transform.position);
-                dog.GetComponent<MovementComponent>().Direction.Value = directionToPlayer.XZ();
+                dog.GetComponent<MovementComponent>().direction.Value = directionToPlayer.XZ();
             }
             else
             {
-                dog.GetComponent<MovementComponent>().Direction.Value = Vector2.zero;
+                dog.GetComponent<MovementComponent>().direction.Value = Vector2.zero;
             }
         }
 
@@ -98,12 +98,12 @@ namespace Systems.Enemy
             {
                 var newRandom = new Vector3().RandomVector(new Vector3(-1,-1,-1), new Vector3(1, 1, 1));
                 var dir = (enemy.LastrandomVector + newRandom).normalized;
-                enemy.GetComponent<MovementComponent>().Direction.Value = dir;
+                enemy.GetComponent<MovementComponent>().direction.Value = dir;
                 enemy.LastrandomVector = dir;
             }
             else
             {
-                enemy.GetComponent<MovementComponent>().Direction.Value = Vector2.zero;
+                enemy.GetComponent<MovementComponent>().direction.Value = Vector2.zero;
             }
         }
     }
