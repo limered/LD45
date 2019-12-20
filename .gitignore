@@ -34,3 +34,7 @@ sysinfo.txt
 # Builds
 *.apk
 *.unitypackage
+
+LD45/_ReSharper.Caches/
+
+LD45/Logs/
