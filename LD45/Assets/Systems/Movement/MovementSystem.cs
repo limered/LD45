@@ -2,7 +2,6 @@
 using SystemBase;
 using Systems.Dog;
 using UniRx;
-using UniRx.Triggers;
 using UnityEngine;
 using Utils;
 
@@ -13,13 +12,11 @@ namespace Systems.Movement
     {
         public override void Register(MovementComponent component)
         {
-            component.FixedUpdateAsObservable()
-                .Select(_ => component)
+            SystemFixedUpdate(component)
                 .Subscribe(CalculateMovement)
                 .AddTo(component);
 
-            component.FixedUpdateAsObservable()
-                .Select(_ => component)
+            SystemFixedUpdate(component)
                 .Where(c => c.GetComponent<StartDogComponent>())
                 .Subscribe(CalculateDogMovement)
                 .AddTo(component);
