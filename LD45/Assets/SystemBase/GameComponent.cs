@@ -1,6 +1,9 @@
-﻿using Systems;
+﻿using System;
+using Systems;
+using UniRx;
 using UnityEngine;
 using Utils;
+using Utils.Plugins;
 
 namespace SystemBase
 {
@@ -20,11 +23,23 @@ namespace SystemBase
             OverwriteStart();
         }
 
-        protected virtual void OverwriteStart()
-        {
+        protected virtual void OverwriteStart() { }
 
+        public IObservable<TComponent> WaitOn<TComponent>(ReactiveProperty<TComponent> componentToWaitOnTo) 
+            where TComponent : GameComponent
+        {
+            return componentToWaitOnTo.WhereNotNull().Select(waitedComponent => waitedComponent);
         }
 
+        public IDisposable WaitOn<TComponent>(ReactiveProperty<TComponent> componentToWaitOnTo, Action<TComponent> onNext)
+            where TComponent : GameComponent
+        {
+            return componentToWaitOnTo
+                .WhereNotNull()
+                .Select(waitedComponent => waitedComponent)
+                .Subscribe(onNext)
+                .AddTo(this);
+        }
     }
 
     public class SemanticGameComponent<TGameComponent> : GameComponent where TGameComponent : IGameComponent
@@ -32,15 +47,8 @@ namespace SystemBase
         public TGameComponent dependency;
         public TGameComponent Dependency
         {
-            get
-            {
-                if (dependency != null) return dependency;
-                else return GetComponent<TGameComponent>();
-            }
-            set
-            {
-                dependency = value;
-            }
+            get => dependency != null ? dependency : GetComponent<TGameComponent>();
+            set => dependency = value;
         }
     }
 }

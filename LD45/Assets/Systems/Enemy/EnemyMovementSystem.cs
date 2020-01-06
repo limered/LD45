@@ -7,7 +7,6 @@ using UniRx;
 using UniRx.Triggers;
 using UnityEngine;
 using Utils.Math;
-using Utils.Plugins;
 using Utils.Unity;
 
 namespace Systems.Enemy
@@ -19,24 +18,16 @@ namespace Systems.Enemy
 
         public override void Register(FollowPlayerComponent component)
         {
-            _player.WhereNotNull()
-                .Subscribe(_ => component.FixedUpdateAsObservable()
-                    .Select(a => component)
-                    .Subscribe(FollowPlayer)
-                    .AddTo(component)
-                )
-                .AddTo(component);
+            component.WaitOn(_player, player => SystemFixedUpdate(component)
+                .Subscribe(FollowPlayer)
+                .AddTo(component));
         }
 
         public override void Register(EndDogComponent component)
         {
-            _player.WhereNotNull()
-                .Subscribe(_ => component.FixedUpdateAsObservable()
-                    .Select(a => component)
-                    .Subscribe(FollowPlayer)
-                    .AddTo(component)
-                )
-                .AddTo(component);
+            component.WaitOn(_player, player => SystemFixedUpdate(component)
+                .Subscribe(FollowPlayer)
+                .AddTo(component));
         }
 
         public override void Register(StartDogComponent component)
@@ -83,13 +74,12 @@ namespace Systems.Enemy
 
         public override void Register(IradicMovementComponent component)
         {
-            _player.WhereNotNull()
+            component.WaitOn(_player)
                 .Subscribe(_ => component.FixedUpdateAsObservable()
                     .Select(a => component)
                     .Subscribe(MoveIradic)
                     .AddTo(component)
-                )
-                .AddTo(component);
+                );
         }
 
         private void MoveIradic(IradicMovementComponent enemy)
